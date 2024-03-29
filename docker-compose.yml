@@ -1,0 +1,88 @@
+version: '3.8'
+name: fastdelivery
+
+services:
+  identity:
+    container_name: identity
+    image: kawsarbs/fastdelivery.identity:latest
+    environment:
+      - ASPNETCORE_ENVIRONMENT=development
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+     - fastdelivery
+  postgres:
+    container_name: postgres
+    image: postgres:15-alpine
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=admin
+      - PGPORT=5430
+    ports:
+      - 5430:5430
+    volumes:
+      - postgres-data:/data/db
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+     - fastdelivery
+
+  mongo:
+    image: mongo
+    container_name: mongo
+    restart: on-failure
+    ports:
+      - 27018:27017
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - fastdelivery
+
+  redis:
+    container_name: redis
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+      - DISABLE_COMMANDS=FLUSHDB,FLUSHALL,CONFIG
+    image: redis:alpine
+    ports:
+      - 6380:6379
+    volumes:
+      - redis-data:/data/redis
+    networks:
+      - fastdelivery
+
+  rabbitmq:
+    container_name: rabbitmq
+    image: rabbitmq:3-management-alpine
+    volumes:
+      - rabbitmq-data:/data/rabbitmq
+    networks:
+      - fastdelivery
+
+  # elk:
+  #   container_name:  elasticsearch-kibana
+  #   image: sebp/elk:oss-8.5.3
+  #   environment:
+  #     - LOGSTASH_START=0
+  #   volumes:
+  #     - sebp-elk-data:/usr/share/elk/data
+  #   ports:
+  #     - 5601:5601
+  #     - 9200:9200
+  #   networks:
+  #     - fastdelivery
+
+volumes:
+  postgres-data:
+  redis-data:
+  rabbitmq-data:
+  mongo-data:
+  sebp-elk-data:
+
+networks:
+  fastdelivery:
+    name:  fastdelivery
