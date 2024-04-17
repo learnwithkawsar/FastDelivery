@@ -20,7 +20,7 @@ public class SeedClientsAndScopes : IHostedService
     {
         await using var scope = _serviceProvider.CreateAsyncScope();
 
-        var context = scope.ServiceProvider.GetRequiredService<IdentityDbContext>();
+        var context = scope.ServiceProvider.GetRequiredService<AppIndentityDbContext>();
         _ = await context.Database.EnsureCreatedAsync(cancellationToken);
 
         var manager = scope.ServiceProvider.GetRequiredService<IOpenIddictApplicationManager>();

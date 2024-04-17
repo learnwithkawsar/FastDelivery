@@ -5,9 +5,9 @@ using Microsoft.EntityFrameworkCore.Diagnostics;
 
 namespace FastDelivery.Service.Identity.Infrastructure.Persistence
 {
-    public class IndentityDbContext : IdentityDbContext<ApplicationUser>
+    public class AppIndentityDbContext : IdentityDbContext<ApplicationUser>
     {
-        public IndentityDbContext(DbContextOptions<IndentityDbContext> options):base(options) 
+        public AppIndentityDbContext(DbContextOptions<AppIndentityDbContext> options):base(options) 
         {
 
         }

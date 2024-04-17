@@ -43,7 +43,9 @@ public static class Extensions
         {
             if (builder.Environment.IsDevelopment())
             {
-                options.UseInMemoryDatabase("authDb");
+                // options.UseInMemoryDatabase("authDb");
+                options.UseNpgsql(connectionString, m => m.MigrationsAssembly(dbContextAssembly.FullName));
+
             }
             else
             {

@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using FastDelivery.Service.Identity.Domain.Users;
+using FastDelivery.Service.Identity.Infrastructure.Persistence;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -7,6 +10,11 @@ namespace FastDelivery.Service.Identity.Api.Controllers;
 [ApiController]
 public class ValuesController : ControllerBase
 {
+    private readonly UserManager<ApplicationUser> _userManager;
+    public ValuesController(UserManager<ApplicationUser> userManager)
+    {
+        _userManager = userManager;
+    }
     // GET: api/<ValuesController>
     [HttpGet]
     public IEnumerable<string> Get()
@@ -16,8 +24,24 @@ public class ValuesController : ControllerBase
 
     // GET api/<ValuesController>/5
     [HttpGet("{id}")]
-    public string Get(int id)
+    public async Task<string> GetAsync(int id)
     {
+     var   adminUser = new ApplicationUser
+        {
+            
+            Email = "admin@admin.com",
+            UserName = "admin",
+            EmailConfirmed = true,
+            PhoneNumberConfirmed = true,
+            NormalizedEmail = "admin@admin.com".ToUpperInvariant(),
+            NormalizedUserName = "admin".ToUpperInvariant(),
+            
+        };
+
+       
+        var password = new PasswordHasher<ApplicationUser>();
+        adminUser.PasswordHash = password.HashPassword(adminUser, "123Pa$$word!");
+        await _userManager.CreateAsync(adminUser);
         return "value";
     }
 
@@ -25,6 +49,7 @@ public class ValuesController : ControllerBase
     [HttpPost]
     public void Post([FromBody] string value)
     {
+        
     }
 
     // PUT api/<ValuesController>/5

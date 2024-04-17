@@ -4,5 +4,6 @@ namespace FastDelivery.Service.Identity.Domain.Users
 {
     public class ApplicationUser : IdentityUser
     {
+        public string? FullAddress { get; set; }
     }
 }

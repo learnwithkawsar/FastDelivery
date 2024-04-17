@@ -13,15 +13,15 @@ using static OpenIddict.Abstractions.OpenIddictConstants;
 namespace FastDelivery.Service.Identity.Infrastructure;
 public static class Extensions
 {
-    internal static bool enableSwagger = false;
+    internal static bool enableSwagger = true;
     public static void AddIdentityInfrastructure(this WebApplicationBuilder builder)
     {
         var coreAssembly = typeof(IdentityCore).Assembly;
-        var dbContextAssembly = typeof(IdentityDbContext).Assembly;
+        var dbContextAssembly = typeof(AppIndentityDbContext).Assembly;
 
         builder.Services.AddIdentityExtensions();
         builder.AddInfrastructure(applicationAssembly: coreAssembly, enableSwagger: enableSwagger);
-        builder.ConfigureAuthServer<IdentityDbContext>(dbContextAssembly);
+        builder.ConfigureAuthServer<AppIndentityDbContext>(dbContextAssembly);
         builder.Services.AddHostedService<SeedClientsAndScopes>();
     }
     public static void UseIdentityInfrastructure(this WebApplication app)
@@ -39,7 +39,7 @@ public static class Extensions
             options.Password.RequireUppercase = false;
             options.User.RequireUniqueEmail = true;
         })
-         .AddEntityFrameworkStores<IdentityDbContext>()
+         .AddEntityFrameworkStores<AppIndentityDbContext>()
         .AddDefaultTokenProviders();
 
 
