@@ -13,7 +13,7 @@ using static OpenIddict.Abstractions.OpenIddictConstants;
 namespace FastDelivery.Service.Identity.Infrastructure;
 public static class Extensions
 {
-    internal static bool enableSwagger = true;
+    internal static bool enableSwagger = false;
     public static void AddIdentityInfrastructure(this WebApplicationBuilder builder)
     {
         var coreAssembly = typeof(IdentityCore).Assembly;

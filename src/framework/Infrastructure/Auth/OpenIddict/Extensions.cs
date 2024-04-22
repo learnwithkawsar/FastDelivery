@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using FastDelivery.Framework.Infrastructure.Options;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -10,6 +11,25 @@ using static OpenIddict.Abstractions.OpenIddictConstants;
 namespace FastDelivery.Framework.Infrastructure.Auth.OpenIddict;
 public static class Extensions
 {
+    public static IServiceCollection AddAuthValidation(this IServiceCollection services, IConfiguration config)
+    {
+        var authOptions = services.BindValidateReturn<OpenIddictOptions>(config);
+
+        services.AddOpenIddict()
+        .AddValidation(options =>
+        {
+            options.SetIssuer(authOptions.IssuerUrl!);
+            options.UseIntrospection()
+                   .SetClientId(authOptions.ClientId!)
+                   .SetClientSecret(authOptions.ClientSecret!);
+            options.UseSystemNetHttp();
+            options.UseAspNetCore();
+        });
+
+        services.AddAuthentication(OpenIddictValidationAspNetCoreDefaults.AuthenticationScheme);
+        services.AddAuthorization();
+        return services;
+    }
     public static void ConfigureAuthServer<T>(this WebApplicationBuilder builder, Assembly dbContextAssembly, string connectionName = "DefaultConnection") where T : DbContext
     {
         builder.Services.AddOpenIddict()

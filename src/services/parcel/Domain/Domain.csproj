@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AssemblyName>FastDelivery.Service.Parcel.Domain</AssemblyName>
+    <RootNamespace>FastDelivery.Service.Parcel.Domain</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\framework\Core\FastDelivery.Framework.Core.csproj" />
+  </ItemGroup>
+
+</Project>
