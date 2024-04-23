@@ -8,6 +8,8 @@ namespace FastDelivery.Service.Identity.Infrastructure.Persistence;
 public static class Constants
 {
     public const string Client = "console";
+    public const string PasswordGrantClient = "PasswordGrantClient";
+    public const string PasswordGrantClientSecret = "858b39fd-3908-45cb-ab14-aa58220f6d68";
     public const string ClientSecret = "858b39fd-3908-45cb-ab14-aa58220f6d69";
     public const string ClientDisplayName = "console";
     public const string CatalogResourceServer = "catalog.resource.server";

@@ -41,6 +41,7 @@ public static class Extensions
                    .SetUserinfoEndpointUris("connect/userinfo")
                    .SetTokenEndpointUris("/connect/token");
             options.AllowClientCredentialsFlow();
+            options.AllowPasswordFlow();
             options.RegisterScopes(Scopes.Email, Scopes.Profile, Scopes.Roles);
             options.DisableAccessTokenEncryption();
             options.AddDevelopmentEncryptionCertificate().AddDevelopmentSigningCertificate();

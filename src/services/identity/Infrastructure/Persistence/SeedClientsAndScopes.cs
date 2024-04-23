@@ -46,6 +46,29 @@ public class SeedClientsAndScopes : IHostedService
                 }
             }, cancellationToken);
         }
+        if (await manager.FindByClientIdAsync(Constants.PasswordGrantClient, cancellationToken) is null)
+        {
+            // Create a new client for the password grant type
+            await manager.CreateAsync(new OpenIddictApplicationDescriptor
+            {
+                ClientId = Constants.PasswordGrantClient,
+                ClientSecret = Constants.PasswordGrantClientSecret,
+                DisplayName = "Password Grant Client", // Set a display name for the client
+                Permissions =
+        {
+                    Permissions.Endpoints.Token,
+                    Permissions.GrantTypes.Password, // Allow the password grant type
+                    Permissions.ResponseTypes.Token,
+                    Permissions.Scopes.Email,
+                    Permissions.Scopes.Profile,
+                    Permissions.Scopes.Roles,
+                    Permissions.Prefixes.Scope + Constants.CatalogReadScope,
+                    Permissions.Prefixes.Scope + Constants.CatalogWriteScope,
+                    Permissions.Prefixes.Scope + Constants.CartReadScope,
+                    Permissions.Prefixes.Scope + Constants.CartWriteScope
+                }
+            }, cancellationToken);
+        }
 
         if (await manager.FindByClientIdAsync(Constants.GatewayResourceServer, cancellationToken) is null)
         {
