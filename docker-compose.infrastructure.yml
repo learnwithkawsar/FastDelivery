@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  postgres:
+    container_name: postgres
+    image: postgres:15-alpine 
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=1234
+      - PGPORT=5430
+    ports:
+      - 5430:5430
+    volumes:
+      - postgres-data:/data/db
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+     - fastdelivery
+  mongo:
+    image: mongo
+    container_name: mongo
+    restart: on-failure
+    ports:
+      - 27018:27017
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - fastdelivery
+volumes:
+  postgres-data:  
+  mongo-data:
+networks:
+  fastdelivery:
+    name:  fastdelivery
+

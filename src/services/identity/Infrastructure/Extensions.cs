@@ -6,6 +6,7 @@ using FastDelivery.Service.Identity.Infrastructure.Persistence;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using static OpenIddict.Abstractions.OpenIddictConstants;
@@ -22,7 +23,19 @@ public static class Extensions
         builder.Services.AddIdentityExtensions();
         builder.AddInfrastructure(applicationAssembly: coreAssembly, enableSwagger: enableSwagger);
         builder.ConfigureAuthServer<AppIndentityDbContext>(dbContextAssembly);
+        ApplyMigration<AppIndentityDbContext>(builder.Services.BuildServiceProvider());
         builder.Services.AddHostedService<SeedClientsAndScopes>();
+    }
+    public static void ApplyMigration<T>(IServiceProvider serviceProvider) where T : DbContext
+    {
+        // Get an instance of your DbContext
+        using (var serviceScope = serviceProvider.GetRequiredService<IServiceScopeFactory>().CreateScope())
+        {
+            var dbContext = serviceScope.ServiceProvider.GetRequiredService<T>();
+
+            // Apply pending migrations
+            dbContext.Database.Migrate();
+        }
     }
     public static void UseIdentityInfrastructure(this WebApplication app)
     {

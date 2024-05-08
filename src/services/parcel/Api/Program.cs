@@ -18,6 +18,7 @@ public class Program
         var app = builder.Build();
 
         app.UseParcelInfrastructure();
+        app.MapGet("/", () => "Percel Service Running!!");
 
         //// Configure the HTTP request pipeline.
         //if (app.Environment.IsDevelopment())

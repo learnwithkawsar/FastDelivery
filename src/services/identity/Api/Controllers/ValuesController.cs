@@ -1,4 +1,5 @@
-﻿using FastDelivery.Service.Identity.Domain.Users;
+﻿using Dapr.Client;
+using FastDelivery.Service.Identity.Domain.Users;
 using FastDelivery.Service.Identity.Infrastructure.Persistence;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -11,15 +12,22 @@ namespace FastDelivery.Service.Identity.Api.Controllers;
 public class ValuesController : ControllerBase
 {
     private readonly UserManager<ApplicationUser> _userManager;
-    public ValuesController(UserManager<ApplicationUser> userManager)
+    private readonly DaprClient _daprClient;
+    public ValuesController(UserManager<ApplicationUser> userManager, DaprClient daprClient)
     {
         _userManager = userManager;
+        _daprClient = daprClient;
     }
     // GET: api/<ValuesController>
     [HttpGet]
-    public IEnumerable<string> Get()
+    public async Task<IEnumerable<WeatherForecast>> GetAsync()
     {
-        return new string[] { "value1", "value2" };
+        var forecasts = await _daprClient.InvokeMethodAsync<IEnumerable<WeatherForecast>>(
+                 HttpMethod.Get,
+                 "parcelservice",
+                 "weatherForecast");
+
+        return forecasts;
     }
 
     // GET api/<ValuesController>/5

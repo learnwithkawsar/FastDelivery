@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  percel-service:
+    build:
+      context: .
+      dockerfile: src/services/parcel/Api/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=5101
+      #- ASPNETCORE_HTTPS_PORTS=8081
+    ports:
+      - "5101:5101"
+      - "50001:50001"
+  percel-service-dapr: 
+    image: "daprio/daprd:latest" 
+    command: [ "./daprd",
+               "-app-id", "parcelservice",                
+               "-app-port", "5101"
+                 ] 
+    depends_on: 
+        - percel-service 
+    network_mode: "service:percel-service" 
+
+  identity-service:
+    build:
+      context: .
+      dockerfile: src/services/identity/Api/Dockerfile
+    environment:
+       - ASPNETCORE_ENVIRONMENT=Development
+       - ASPNETCORE_HTTP_PORTS=5103
+    ports:
+      - "5103:5103"
+      - "50002:50001"
+  identity-service-dapr: 
+    image: "daprio/daprd:latest" 
+    command: [ "./daprd",
+               "-app-id", "identityservice",                
+               "-app-port", "5103"
+                 ] 
+    depends_on: 
+        - identity-service 
+    network_mode: "service:identity-service" 
