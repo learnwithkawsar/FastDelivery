@@ -11,6 +11,7 @@ namespace FastDelivery.Service.Identity.Api.Controllers;
 [ApiController]
 public class ValuesController : ControllerBase
 {
+    private string DAPR_STORE_NAME = "statestore";
     private readonly UserManager<ApplicationUser> _userManager;
     private readonly DaprClient _daprClient;
     public ValuesController(UserManager<ApplicationUser> userManager, DaprClient daprClient)
@@ -21,12 +22,16 @@ public class ValuesController : ControllerBase
     // GET: api/<ValuesController>
     [HttpGet]
     public async Task<IEnumerable<WeatherForecast>> GetAsync()
-    {
+    {        
         var forecasts = await _daprClient.InvokeMethodAsync<IEnumerable<WeatherForecast>>(
                  HttpMethod.Get,
                  "parcelservice",
                  "weatherForecast");
-
+        var httpClient = DaprClient.CreateInvokeHttpClient("parcelservice");
+       var res = await httpClient.GetAsync("/weatherForecast");
+        var data = await res.Content.ReadAsStringAsync();
+        
+        var date = await _daprClient.GetStateAsync<DateTime>(DAPR_STORE_NAME, "date");
         return forecasts;
     }
 

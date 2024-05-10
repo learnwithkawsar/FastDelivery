@@ -4,13 +4,12 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <AssemblyName>FastDelivery.Service.Parcel.Application</AssemblyName>
-    <RootNamespace>FastDelivery.Service.Parcel.Application</RootNamespace>
+    <AssemblyName>FastDelivery.Service.Order.Domain</AssemblyName>
+    <RootNamespace>FastDelivery.Service.Order.Domain</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\framework\Core\FastDelivery.Framework.Core.csproj" />
-    <ProjectReference Include="..\Domain\Domain.csproj" />
   </ItemGroup>
 
 </Project>

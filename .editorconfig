@@ -5,8 +5,11 @@ roslynator_accessibility_modifiers = explicit
 roslynator_use_anonymous_function_or_method_group = anonymous_function|method_group
 roslynator_enum_has_flag_style = method
 roslynator_object_creation_type_style = explicit|implicit|implicit_when_type_is_obvious
+
 indent_style = space
+
 trim_trailing_whitespace = true
+
 insert_final_newline = false
 
 [*.md]
@@ -17,16 +20,16 @@ indent_size = 2
 
 [*.cs]
 dotnet_sort_system_directives_first = true:warning
-csharp_style_namespace_declarations = file_scoped
+
+csharp_style_namespace_declarations = file_scoped:warning
+
 csharp_style_var_for_built_in_types = false:warning
+
 csharp_style_var_when_type_is_apparent = true:warning
+
 csharp_style_var_elsewhere = true:warning
+
 csharp_new_line_before_members_in_anonymous_types = true:warning
-
-# Asynchronous method name should end with 'Async'.
-dotnet_diagnostic.RCS1046.severity = none
-
-dotnet_diagnostic.RCS1194.severity = none
 
 # SA1623: Property summary documentation should match accessors
 dotnet_diagnostic.SA1623.severity = none
@@ -153,3 +156,6 @@ dotnet_diagnostic.CA1711.severity = none
 
 # CA1307: Specify StringComparison for clarity
 dotnet_diagnostic.CA1307.severity = none
+
+#CS8618: Non-nullable property is uninitialized. Consider declaring the property as nullable.
+dotnet_diagnostic.CS8618.severity = error

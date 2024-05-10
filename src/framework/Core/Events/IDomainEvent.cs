@@ -4,9 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FastDelivery.Service.Order.Application
+namespace FastDelivery.Framework.Core.Events;
+public interface IDomainEvent : IEvent
 {
-    public static class ParcelApplication
-    {
-    }
 }
+

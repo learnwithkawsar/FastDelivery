@@ -18,8 +18,8 @@
   
 
   <ItemGroup>
-    <ProjectReference Include="..\Application\Application.csproj" />
-    <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
+    <ProjectReference Include="..\Application\OrderService.Application.csproj" />
+    <ProjectReference Include="..\Infrastructure\OrderService.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

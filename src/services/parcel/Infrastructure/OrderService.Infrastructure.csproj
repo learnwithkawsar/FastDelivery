@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AssemblyName>FastDelivery.Service.Order.Infrastructure</AssemblyName>
+    <RootNamespace>FastDelivery.Service.Order.Infrastructure</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\framework\Infrastructure\FastDelivery.Framework.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\..\framework\Persistence.Mongo\FastDelivery.Framework.Persistence.Mongo.csproj" />
+    <ProjectReference Include="..\Application\OrderService.Application.csproj" />
+  </ItemGroup>
+
+</Project>

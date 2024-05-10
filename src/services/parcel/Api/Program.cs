@@ -1,5 +1,5 @@
+using FastDelivery.Service.Order.Infrastructure;
 
-using FastDelivery.Service.Parcel.Infrastructure;
 namespace Api;
 
 public class Program

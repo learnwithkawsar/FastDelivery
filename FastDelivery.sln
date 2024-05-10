@@ -21,17 +21,19 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FastDelivery.Framework.Core
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "src\services\identity\Domain\Domain.csproj", "{5A3D37F3-FDC4-47B1-923D-AD801BC62542}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "parcel", "parcel", "{B1134192-6AD7-4313-BC40-BBCD50E60164}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "orders", "orders", "{B1134192-6AD7-4313-BC40-BBCD50E60164}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api", "src\services\parcel\Api\Api.csproj", "{1B5DB2C7-98C0-49DC-8FE4-87913618A277}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderService.Api", "src\services\parcel\Api\OrderService.Api.csproj", "{1B5DB2C7-98C0-49DC-8FE4-87913618A277}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "src\services\parcel\Application\Application.csproj", "{235EBF7F-0B64-4D30-979C-EBB6C13AF239}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderService.Application", "src\services\parcel\Application\OrderService.Application.csproj", "{235EBF7F-0B64-4D30-979C-EBB6C13AF239}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "src\services\parcel\Infrastructure\Infrastructure.csproj", "{8488FD80-7204-4F43-B50C-6E28E8B4C532}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderService.Infrastructure", "src\services\parcel\Infrastructure\OrderService.Infrastructure.csproj", "{8488FD80-7204-4F43-B50C-6E28E8B4C532}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "src\services\parcel\Domain\Domain.csproj", "{8F803453-2285-4365-8515-193CE888FCD6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderService.Domain", "src\services\parcel\Domain\OrderService.Domain.csproj", "{8F803453-2285-4365-8515-193CE888FCD6}"
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{FC8DBDA1-B62C-4239-8373-767CA8CFF62B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FastDelivery.Framework.Persistence.Mongo", "src\framework\Persistence.Mongo\FastDelivery.Framework.Persistence.Mongo.csproj", "{3A9EE8C1-1DF3-4FB9-9805-070021E9B9C3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -83,6 +85,10 @@ Global
 		{FC8DBDA1-B62C-4239-8373-767CA8CFF62B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FC8DBDA1-B62C-4239-8373-767CA8CFF62B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FC8DBDA1-B62C-4239-8373-767CA8CFF62B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3A9EE8C1-1DF3-4FB9-9805-070021E9B9C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A9EE8C1-1DF3-4FB9-9805-070021E9B9C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A9EE8C1-1DF3-4FB9-9805-070021E9B9C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A9EE8C1-1DF3-4FB9-9805-070021E9B9C3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -100,6 +106,7 @@ Global
 		{235EBF7F-0B64-4D30-979C-EBB6C13AF239} = {B1134192-6AD7-4313-BC40-BBCD50E60164}
 		{8488FD80-7204-4F43-B50C-6E28E8B4C532} = {B1134192-6AD7-4313-BC40-BBCD50E60164}
 		{8F803453-2285-4365-8515-193CE888FCD6} = {B1134192-6AD7-4313-BC40-BBCD50E60164}
+		{3A9EE8C1-1DF3-4FB9-9805-070021E9B9C3} = {85CD1615-A566-416A-9A27-1429B278AF66}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A0E20962-F6EB-458C-95BA-79ADF5392F1F}

@@ -5,10 +5,12 @@ using FastDelivery.Framework.Infrastructure.Middlewares;
 using FastDelivery.Framework.Infrastructure.Options;
 using FastDelivery.Framework.Infrastructure.Services;
 using FastDelivery.Framework.Infrastructure.Swagger;
+using FastDelivery.Framework.Infrastructure.Common;
 using FluentValidation;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Builder.Extensions;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -32,6 +34,7 @@ namespace FastDelivery.Framework.Infrastructure
                 options.AddPolicy(name: AllowAllOrigins,
                                   builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
             });
+            builder.Services.AddCustomeApiVersioning();
             builder.Services.AddExceptionMiddleware();
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
@@ -48,7 +51,9 @@ namespace FastDelivery.Framework.Infrastructure
             if (enableSwagger) builder.Services.AddSwaggerExtension(config);
           //  builder.Services.AddCachingService(config);
             builder.Services.AddInternalServices();
+            builder.Services.AddDaprClient();
         }
+       
         public static void UseInfrastructure(this WebApplication app, IWebHostEnvironment env, bool enableSwagger = true)
         {
             //Preserve Order

@@ -16,11 +16,15 @@ services:
     image: "daprio/daprd:latest" 
     command: [ "./daprd",
                "-app-id", "parcelservice",                
-               "-app-port", "5101"
+               "-app-port", "5101",
+               "-components-path", "/components"
                  ] 
     depends_on: 
-        - percel-service 
-    network_mode: "service:percel-service" 
+     - percel-service
+     - redis
+    network_mode: "service:percel-service"
+    volumes:
+     - ./components:/components
 
   identity-service:
     build:
@@ -36,8 +40,19 @@ services:
     image: "daprio/daprd:latest" 
     command: [ "./daprd",
                "-app-id", "identityservice",                
-               "-app-port", "5103"
+               "-app-port", "5103",
+               "-components-path", "/components"
                  ] 
     depends_on: 
-        - identity-service 
-    network_mode: "service:identity-service" 
+        - identity-service
+        - redis
+    network_mode: "service:identity-service"
+    volumes:
+     - ./components:/components
+  redis:
+   image: redis
+   hostname: redis
+   ports:
+    - "6379:6379"
+   networks:
+     - fastdelivery
