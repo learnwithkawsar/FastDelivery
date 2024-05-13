@@ -7,11 +7,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "services", "services", "{E4
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "identity", "identity", "{08EDB50F-2381-486B-8976-109A0DA9FC05}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api", "src\services\identity\Api\Api.csproj", "{006C3688-9BAB-4D14-BD2A-6C3DCA6E4C05}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityService.Api", "src\services\identity\Api\IdentityService.Api.csproj", "{006C3688-9BAB-4D14-BD2A-6C3DCA6E4C05}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "src\services\identity\Application\Application.csproj", "{7FDB3F94-BACA-4011-8BA9-A16F24F07F66}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityService.Application", "src\services\identity\Application\IdentityService.Application.csproj", "{7FDB3F94-BACA-4011-8BA9-A16F24F07F66}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "src\services\identity\Infrastructure\Infrastructure.csproj", "{D3C766AC-0E89-4A8C-A6D6-4D2CBC8A588F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityService.Infrastructure", "src\services\identity\Infrastructure\IdentityService.Infrastructure.csproj", "{D3C766AC-0E89-4A8C-A6D6-4D2CBC8A588F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "framework", "framework", "{85CD1615-A566-416A-9A27-1429B278AF66}"
 EndProject
@@ -19,17 +19,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FastDelivery.Framework.Infr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FastDelivery.Framework.Core", "src\framework\Core\FastDelivery.Framework.Core.csproj", "{74A9D6B3-AB5C-4898-A9BE-1D761E0B0D1A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "src\services\identity\Domain\Domain.csproj", "{5A3D37F3-FDC4-47B1-923D-AD801BC62542}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityService.Domain", "src\services\identity\Domain\IdentityService.Domain.csproj", "{5A3D37F3-FDC4-47B1-923D-AD801BC62542}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "orders", "orders", "{B1134192-6AD7-4313-BC40-BBCD50E60164}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderService.Api", "src\services\parcel\Api\OrderService.Api.csproj", "{1B5DB2C7-98C0-49DC-8FE4-87913618A277}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderService.Api", "src\services\orders\Api\OrderService.Api.csproj", "{1B5DB2C7-98C0-49DC-8FE4-87913618A277}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderService.Application", "src\services\parcel\Application\OrderService.Application.csproj", "{235EBF7F-0B64-4D30-979C-EBB6C13AF239}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderService.Application", "src\services\orders\Application\OrderService.Application.csproj", "{235EBF7F-0B64-4D30-979C-EBB6C13AF239}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderService.Infrastructure", "src\services\parcel\Infrastructure\OrderService.Infrastructure.csproj", "{8488FD80-7204-4F43-B50C-6E28E8B4C532}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderService.Infrastructure", "src\services\orders\Infrastructure\OrderService.Infrastructure.csproj", "{8488FD80-7204-4F43-B50C-6E28E8B4C532}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderService.Domain", "src\services\parcel\Domain\OrderService.Domain.csproj", "{8F803453-2285-4365-8515-193CE888FCD6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderService.Domain", "src\services\orders\Domain\OrderService.Domain.csproj", "{8F803453-2285-4365-8515-193CE888FCD6}"
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{FC8DBDA1-B62C-4239-8373-767CA8CFF62B}"
 EndProject

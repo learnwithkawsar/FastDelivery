@@ -2,11 +2,12 @@ version: '3.8'
 name: fastdelivery
 
 services:
-  percel-service:
-    container_name: parcel
-    image: ${DOCKER_REGISTRY-}percelapi        
+  order-service:
+    container_name: order
+    image: ${DOCKER_REGISTRY-}orderapi        
     networks:
      - fastdelivery
+     - elastic
 
   identity-service:
     container_name: identity
@@ -18,4 +19,5 @@ services:
     #network_mode: "service:identity"
     networks:
      - fastdelivery
+     - elastic
 

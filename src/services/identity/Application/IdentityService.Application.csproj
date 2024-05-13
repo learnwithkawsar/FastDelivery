@@ -10,7 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\framework\Core\FastDelivery.Framework.Core.csproj" />
-    <ProjectReference Include="..\Domain\Domain.csproj" />
+    <ProjectReference Include="..\Domain\IdentityService.Domain.csproj" />
   </ItemGroup>
 
 </Project>

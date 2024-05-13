@@ -10,6 +10,9 @@ using System.Text;
 using System.Threading.Tasks;
 using FastDelivery.Framework.Infrastructure.Options;
 using Serilog.Exceptions;
+using Microsoft.Extensions.Configuration;
+using Serilog.Sinks.Elasticsearch;
+using System.Reflection;
 
 namespace FastDelivery.Framework.Infrastructure.Logging.Serilog;
 public static class Extensions
@@ -23,6 +26,7 @@ public static class Extensions
             if (serilogOptions.EnableErichers) ConfigureEnrichers(serilogConfig, appName);
             ConfigureConsoleLogging(serilogConfig, serilogOptions.StructuredConsoleLogging);
             ConfigureWriteToFile(serilogConfig, serilogOptions.WriteToFile, serilogOptions.RetentionFileCount, appName);
+            ConfigureWriteToElasticsearch(serilogConfig, serilogOptions);
             SetMinimumLogLevel(serilogConfig, serilogOptions.MinimumLogLevel);
             if (serilogOptions.OverideMinimumLogLevel) OverideMinimumLogLevel(serilogConfig);
         });
@@ -64,6 +68,21 @@ public static class Extensions
         }
     }
 
+    private static void ConfigureWriteToElasticsearch(LoggerConfiguration serilogConfig, SerilogOptions serilogOptions)
+    {
+        if (serilogOptions.WriteToElastic)
+        {
+            serilogConfig.WriteTo.Elasticsearch(options: new ElasticsearchSinkOptions(new Uri(serilogOptions.ElasticSearchUrl))
+            {
+                MinimumLogEventLevel = LogEventLevel.Information,
+                AutoRegisterTemplate = true,
+                IndexFormat = $"{Assembly.GetExecutingAssembly().GetName().Name.ToLower().Replace(".", "-")}-{serilogOptions.AppName?.ToLower().Replace(".", "-")}-{DateTime.UtcNow:yyyy-MM}"
+                //{Assembly.GetExecutingAssembly().GetName().Name.ToLower().Replace(".", "-")}-
+            });
+        }
+       
+    }   
+
     private static void SetMinimumLogLevel(LoggerConfiguration serilogConfig, string minLogLevel)
     {
         var loggingLevelSwitch = new LoggingLevelSwitch
@@ -87,6 +106,7 @@ public static class Extensions
                      .MinimumLevel.Override("Microsoft.Hosting.Lifetime", LogEventLevel.Information)
                      .MinimumLevel.Override("Microsoft.EntityFrameworkCore", LogEventLevel.Error)
                      .MinimumLevel.Override("OpenIddict.Validation", LogEventLevel.Error)
-                     .MinimumLevel.Override("System.Net.Http.HttpClient.OpenIddict", LogEventLevel.Error);
+                     .MinimumLevel.Override("System.Net.Http.HttpClient.OpenIddict", LogEventLevel.Error)
+                     .MinimumLevel.Override("Microsoft.AspNetCore.HttpLogging.HttpLoggingMiddleware", LogEventLevel.Information);
     }
 }

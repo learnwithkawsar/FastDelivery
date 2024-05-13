@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FastDelivery.Service.Order.Application
 {
-    public static class ParcelApplication
+    public  class OrderApplication
     {
     }
 }

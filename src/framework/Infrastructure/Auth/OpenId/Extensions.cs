@@ -6,12 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.JsonWebTokens;
 using Microsoft.IdentityModel.Tokens;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Security.Claims;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FastDelivery.Framework.Infrastructure.Auth.OpenId;
 public static class Extensions
@@ -26,20 +21,20 @@ public static class Extensions
             options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
         }).AddJwtBearer(options =>
         {
-           // options.UseSecurityTokenValidators = true;
+            // options.UseSecurityTokenValidators = true;
             options.Authority = authOptions.Authority;
             options.Audience = authOptions.Audience;
             options.RequireHttpsMetadata = false;
-            options.SaveToken = true;           
+            options.SaveToken = true;
             options.TokenValidationParameters = new TokenValidationParameters()
-             {
-                 ValidateIssuer = false,
-                 ValidateAudience = false,
-                 ValidateActor = false,
-                 ValidateIssuerSigningKey = false,               
-                 ValidateTokenReplay = false,
-                 SignatureValidator = (token, _) => new JsonWebToken(token)
-             };
+            {
+                ValidateIssuer = false,
+                ValidateAudience = false,
+                ValidateActor = false,
+                ValidateIssuerSigningKey = false,
+                ValidateTokenReplay = false,
+                SignatureValidator = (token, _) => new JsonWebToken(token)
+            };
             options.Events = new JwtBearerEvents
             {
                 OnTokenValidated = async context =>
@@ -50,10 +45,10 @@ public static class Extensions
                         // List all claims for debugging purposes
                         foreach (var claim in identity.Claims)
                         {
-                         //   Console.WriteLine($"Claim: {claim.Type} - {claim.Value}");
+                            //   Console.WriteLine($"Claim: {claim.Type} - {claim.Value}");
                         }
                     }
-                    
+
                 },
                 OnChallenge = context =>
                 {

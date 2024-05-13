@@ -29,10 +29,38 @@ services:
       - mongo-data:/data/db
     networks:
       - fastdelivery
+  elasticsearch:
+   container_name: elasticsearch
+   image: docker.elastic.co/elasticsearch/elasticsearch:8.13.4
+   ports:
+    - 9200:9200
+   volumes:
+    - elasticsearch-data:/usr/share/elasticsearch/data
+   environment:
+    - xpack.security.enabled=false
+    # - xpack.watcher.enabled=false
+    # - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    - discovery.type=single-node
+   networks:
+    - elastic
+  kibana:
+   container_name: kibana
+   image: docker.elastic.co/kibana/kibana:8.13.4
+   ports:
+    - 5601:5601
+   depends_on:
+    - elasticsearch
+   environment:
+    - ELASTICSEARCH_URL=http://localhost:9200
+   networks:
+    - elastic
 volumes:
   postgres-data:  
   mongo-data:
+  elasticsearch-data:
 networks:
   fastdelivery:
     name:  fastdelivery
+  elastic:
+   driver: bridge
 

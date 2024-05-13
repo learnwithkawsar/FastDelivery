@@ -14,7 +14,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\framework\Infrastructure\FastDelivery.Framework.Infrastructure.csproj" />
-    <ProjectReference Include="..\Application\Application.csproj" />
+    <ProjectReference Include="..\Application\IdentityService.Application.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,10 +1,10 @@
 version: '3.8'
 
 services:
-  percel-service:
+  order-service:
     build:
       context: .
-      dockerfile: src/services/parcel/Api/Dockerfile
+      dockerfile: src/services/orders/Api/Dockerfile
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_HTTP_PORTS=5101
@@ -12,17 +12,17 @@ services:
     ports:
       - "5101:5101"
       - "50001:50001"
-  percel-service-dapr: 
+  order-service-dapr: 
     image: "daprio/daprd:latest" 
     command: [ "./daprd",
-               "-app-id", "parcelservice",                
+               "-app-id", "orderservice",                
                "-app-port", "5101",
                "-components-path", "/components"
                  ] 
     depends_on: 
-     - percel-service
+     - order-service
      - redis
-    network_mode: "service:percel-service"
+    network_mode: "service:order-service"
     volumes:
      - ./components:/components
 

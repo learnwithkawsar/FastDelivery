@@ -18,6 +18,11 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.HttpLogging;
+using Serilog;
+using Microsoft.Extensions.Options;
+using Microsoft.Net.Http.Headers;
+using Microsoft.AspNetCore.Http;
 
 namespace FastDelivery.Framework.Infrastructure
 {
@@ -37,8 +42,9 @@ namespace FastDelivery.Framework.Infrastructure
             builder.Services.AddCustomeApiVersioning();
             builder.Services.AddExceptionMiddleware();
             builder.Services.AddControllers();
-            builder.Services.AddEndpointsApiExplorer();
+            builder.Services.AddEndpointsApiExplorer();            
             builder.ConfigureSerilog(appOptions.Name);
+          
             builder.Services.AddRouting(options => options.LowercaseUrls = true);
             if (applicationAssembly != null)
             {
@@ -52,16 +58,40 @@ namespace FastDelivery.Framework.Infrastructure
           //  builder.Services.AddCachingService(config);
             builder.Services.AddInternalServices();
             builder.Services.AddDaprClient();
+            builder.Services.AddHttpLogging(logging =>{
+                logging.LoggingFields = HttpLoggingFields.All;
+                logging.RequestHeaders.Add(HeaderNames.Accept);
+                logging.RequestHeaders.Add(HeaderNames.ContentType);
+                logging.RequestHeaders.Add(HeaderNames.ContentDisposition);
+                logging.RequestHeaders.Add(HeaderNames.ContentEncoding);
+                logging.RequestHeaders.Add(HeaderNames.ContentLength);
+
+                logging.MediaTypeOptions.AddText("application/json");
+                logging.MediaTypeOptions.AddText("multipart/form-data");
+
+                logging.RequestBodyLogLimit = 4096;
+                logging.ResponseBodyLogLimit = 4096;
+            });
         }
        
         public static void UseInfrastructure(this WebApplication app, IWebHostEnvironment env, bool enableSwagger = true)
         {
             //Preserve Order
-            app.UseCors(AllowAllOrigins);
-            app.UseExceptionMiddleware();
+            app.UseHttpLogging();           
+            app.UseCors(AllowAllOrigins);            
+            app.UseExceptionMiddleware();           
             app.UseAuthentication();
             app.UseAuthorization();
+            
             app.MapControllers();
+            //app.UseSerilogRequestLogging(opt => {
+            //    opt.EnrichDiagnosticContext = (diagnosticContext, httpContext) =>
+            //    {
+            //         string body = httpContext.Request.Body;
+            //        diagnosticContext.Set("Body", body);
+            //    };
+            //});
+           
             if (enableSwagger) app.UseSwaggerExtension(env);
         }
     }
