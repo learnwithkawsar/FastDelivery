@@ -10,6 +10,7 @@ ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["src/services/tracking/TrackingService.Api/TrackingService.Api.csproj", "src/services/tracking/TrackingService.Api/"]
 COPY ["src/services/orders/Application/OrderService.Application.csproj", "src/services/orders/Application/"]
+COPY ["src/buildingBlocks/EventBus/EventBus.csproj", "src/buildingBlocks/EventBus/"]
 COPY ["src/framework/Core/FastDelivery.Framework.Core.csproj", "src/framework/Core/"]
 COPY ["src/services/orders/Domain/OrderService.Domain.csproj", "src/services/orders/Domain/"]
 COPY ["src/services/tracking/TrackingService.Infrastructure/TrackingService.Infrastructure.csproj", "src/services/tracking/TrackingService.Infrastructure/"]

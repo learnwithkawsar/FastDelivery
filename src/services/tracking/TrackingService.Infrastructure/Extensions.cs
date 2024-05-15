@@ -2,6 +2,12 @@
 using Microsoft.AspNetCore.Builder;
 using FastDelivery.Framework.Infrastructure;
 using FastDelivery.Framework.Infrastructure.Auth.OpenId;
+using FastDelivery.BuildingBlocks.EventBus.Abstractions;
+using FastDelivery.BuildingBlocks.EventBus;
+using Microsoft.Extensions.DependencyInjection;
+using FastDelivery.Service.Tracking.Application.IntegrationEvents.EventHandling;
+using FastDelivery.Service.Tracking.Application.Trackings;
+using FastDelivery.Framework.Persistence.Mongo;
 namespace FastDelivery.Service.Tracking.Infrastructure;
 
 public static class Extensions
@@ -12,8 +18,9 @@ public static class Extensions
         var policyNames = new List<string> { "catalog:read", "catalog:write" };
         builder.Services.AddOpenIdAuth(builder.Configuration, policyNames);
         builder.AddInfrastructure(applicationAssembly);
-        //builder.Services.AddMongoDbContext<MongoDbContext>(builder.Configuration);
-        //builder.Services.AddTransient<IParcelRepository, ParcelRepository>();
+        builder.Services.AddMongoDbContext<MongoDbContext>(builder.Configuration);
+        builder.Services.AddTransient<ITrackingRepository, TrackingRepository>();
+        builder.Services.AddScoped<OrderAddToTrackingIntegrationEventHandler>();
     }
     public static void UseTrackingInfrastructure(this WebApplication app)
     {

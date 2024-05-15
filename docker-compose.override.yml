@@ -61,7 +61,7 @@ services:
        - ASPNETCORE_HTTP_PORTS=5103
     ports:
       - "5103:5103"
-      - "50010:50001"
+      - "50011:50001"
   identity-service-dapr: 
     image: "daprio/daprd:latest" 
     command: [ "./daprd",

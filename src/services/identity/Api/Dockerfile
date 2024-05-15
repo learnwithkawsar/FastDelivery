@@ -9,6 +9,7 @@ EXPOSE 80
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
+COPY ["src/buildingBlocks/EventBus/EventBus.csproj", "src/buildingBlocks/EventBus/"]
 COPY ["src/services/identity/Api/Api.csproj", "src/services/identity/Api/"]
 COPY ["src/services/identity/Application/Application.csproj", "src/services/identity/Application/"]
 COPY ["src/framework/Core/FastDelivery.Framework.Core.csproj", "src/framework/Core/"]

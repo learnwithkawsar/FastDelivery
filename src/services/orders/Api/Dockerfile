@@ -9,6 +9,7 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["src/services/parcel/Api/Api.csproj", "src/services/parcel/Api/"]
+COPY ["src/buildingBlocks/EventBus/EventBus.csproj", "src/buildingBlocks/EventBus/"]
 COPY ["src/services/parcel/Application/Application.csproj", "src/services/parcel/Application/"]
 COPY ["src/framework/Core/FastDelivery.Framework.Core.csproj", "src/framework/Core/"]
 COPY ["src/services/parcel/Domain/Domain.csproj", "src/services/parcel/Domain/"]

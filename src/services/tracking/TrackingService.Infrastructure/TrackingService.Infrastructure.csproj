@@ -10,7 +10,9 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\framework\Infrastructure\FastDelivery.Framework.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\..\framework\Persistence.Mongo\FastDelivery.Framework.Persistence.Mongo.csproj" />
     <ProjectReference Include="..\TrackingService.Application\TrackingService.Application.csproj" />
+    <ProjectReference Include="..\TrackingService.Domain\TrackingService.Domain.csproj" />
   </ItemGroup>
 
 </Project>

@@ -41,9 +41,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TrackingService.Api", "src\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TrackingService.Domain", "src\services\tracking\TrackingService.Domain\TrackingService.Domain.csproj", "{0412B9DF-496E-426E-B9FB-640176B050DE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrackingService.Application", "src\services\tracking\TrackingService.Application\TrackingService.Application.csproj", "{BF86CAF8-EA97-4CB7-894F-394566B58046}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TrackingService.Application", "src\services\tracking\TrackingService.Application\TrackingService.Application.csproj", "{BF86CAF8-EA97-4CB7-894F-394566B58046}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrackingService.Infrastructure", "src\services\tracking\TrackingService.Infrastructure\TrackingService.Infrastructure.csproj", "{BD68F2CB-7A2C-4D16-B278-918E52D011B1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TrackingService.Infrastructure", "src\services\tracking\TrackingService.Infrastructure\TrackingService.Infrastructure.csproj", "{BD68F2CB-7A2C-4D16-B278-918E52D011B1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "buildingBlocks", "buildingBlocks", "{3008D420-3708-4288-B1F3-D9A8B95E0AEE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EventBus", "EventBus", "{34E21742-0880-4224-89A3-D7184947ABDB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventBus", "src\buildingBlocks\EventBus\EventBus.csproj", "{4078AA8C-7869-4A6F-8162-45CBD14C4A36}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -115,6 +121,10 @@ Global
 		{BD68F2CB-7A2C-4D16-B278-918E52D011B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BD68F2CB-7A2C-4D16-B278-918E52D011B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BD68F2CB-7A2C-4D16-B278-918E52D011B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4078AA8C-7869-4A6F-8162-45CBD14C4A36}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4078AA8C-7869-4A6F-8162-45CBD14C4A36}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4078AA8C-7869-4A6F-8162-45CBD14C4A36}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4078AA8C-7869-4A6F-8162-45CBD14C4A36}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -138,6 +148,8 @@ Global
 		{0412B9DF-496E-426E-B9FB-640176B050DE} = {B3A2CE19-BCC9-4AD3-BD9C-26644CCC9025}
 		{BF86CAF8-EA97-4CB7-894F-394566B58046} = {B3A2CE19-BCC9-4AD3-BD9C-26644CCC9025}
 		{BD68F2CB-7A2C-4D16-B278-918E52D011B1} = {B3A2CE19-BCC9-4AD3-BD9C-26644CCC9025}
+		{34E21742-0880-4224-89A3-D7184947ABDB} = {3008D420-3708-4288-B1F3-D9A8B95E0AEE}
+		{4078AA8C-7869-4A6F-8162-45CBD14C4A36} = {34E21742-0880-4224-89A3-D7184947ABDB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A0E20962-F6EB-458C-95BA-79ADF5392F1F}

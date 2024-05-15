@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\buildingBlocks\EventBus\EventBus.csproj" />
     <ProjectReference Include="..\..\..\framework\Core\FastDelivery.Framework.Core.csproj" />
     <ProjectReference Include="..\Domain\OrderService.Domain.csproj" />
   </ItemGroup>

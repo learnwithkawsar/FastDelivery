@@ -8,4 +8,8 @@
       <RootNamespace>FastDelivery.Service.Tracking.Domain</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\framework\Core\FastDelivery.Framework.Core.csproj" />
+  </ItemGroup>
+
 </Project>

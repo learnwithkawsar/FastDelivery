@@ -8,4 +8,9 @@
       <RootNamespace>FastDelivery.Service.Tracking.Application</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\buildingBlocks\EventBus\EventBus.csproj" />
+    <ProjectReference Include="..\TrackingService.Domain\TrackingService.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
