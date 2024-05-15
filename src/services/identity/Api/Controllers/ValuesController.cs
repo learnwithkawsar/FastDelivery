@@ -1,4 +1,5 @@
-﻿using Dapr.Client;
+﻿using Dapr;
+using Dapr.Client;
 using FastDelivery.Service.Identity.Domain.Users;
 using FastDelivery.Service.Identity.Infrastructure.Persistence;
 using Microsoft.AspNetCore.Identity;
@@ -36,6 +37,7 @@ public class ValuesController : ControllerBase
     }
 
     // GET api/<ValuesController>/5
+   
     [HttpGet("{id}")]
     public async Task<string> GetAsync(int id)
     {
@@ -58,12 +60,14 @@ public class ValuesController : ControllerBase
         return "value";
     }
 
-    // POST api/<ValuesController>
-    [HttpPost]
-    public void Post([FromBody] string value)
-    {
-        
-    }
+    //[HttpPost]
+    //[Topic("fastdelivery-pubsub", "testtopic1")]
+    //// POST api/<ValuesController>
+   
+    //public async Task<string> Post([FromBody] string value)
+    //{
+    //    return value;
+    //}
 
     // PUT api/<ValuesController>/5
     [HttpPut("{id}")]

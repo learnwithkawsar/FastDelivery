@@ -41,7 +41,7 @@ namespace FastDelivery.Framework.Infrastructure
             });
             builder.Services.AddCustomeApiVersioning();
             builder.Services.AddExceptionMiddleware();
-            builder.Services.AddControllers();
+            builder.Services.AddControllers().AddDapr();
             builder.Services.AddEndpointsApiExplorer();            
             builder.ConfigureSerilog(appOptions.Name);
           
@@ -58,7 +58,8 @@ namespace FastDelivery.Framework.Infrastructure
           //  builder.Services.AddCachingService(config);
             builder.Services.AddInternalServices();
             builder.Services.AddDaprClient();
-            builder.Services.AddHttpLogging(logging =>{
+            builder.Services.AddHttpLogging(logging =>
+            {
                 logging.LoggingFields = HttpLoggingFields.All;
                 logging.RequestHeaders.Add(HeaderNames.Accept);
                 logging.RequestHeaders.Add(HeaderNames.ContentType);
@@ -77,12 +78,14 @@ namespace FastDelivery.Framework.Infrastructure
         public static void UseInfrastructure(this WebApplication app, IWebHostEnvironment env, bool enableSwagger = true)
         {
             //Preserve Order
-            app.UseHttpLogging();           
+            app.UseHttpLogging();
+            app.UseCloudEvents();
             app.UseCors(AllowAllOrigins);            
             app.UseExceptionMiddleware();           
             app.UseAuthentication();
             app.UseAuthorization();
-            
+
+            app.MapSubscribeHandler();
             app.MapControllers();
             //app.UseSerilogRequestLogging(opt => {
             //    opt.EnrichDiagnosticContext = (diagnosticContext, httpContext) =>
@@ -91,7 +94,7 @@ namespace FastDelivery.Framework.Infrastructure
             //        diagnosticContext.Set("Body", body);
             //    };
             //});
-           
+           // app.MapSubscribeHandler();
             if (enableSwagger) app.UseSwaggerExtension(env);
         }
     }

@@ -35,6 +35,16 @@ Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-co
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FastDelivery.Framework.Persistence.Mongo", "src\framework\Persistence.Mongo\FastDelivery.Framework.Persistence.Mongo.csproj", "{3A9EE8C1-1DF3-4FB9-9805-070021E9B9C3}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tracking", "tracking", "{B3A2CE19-BCC9-4AD3-BD9C-26644CCC9025}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TrackingService.Api", "src\services\tracking\TrackingService.Api\TrackingService.Api.csproj", "{47A4BD2B-4E4E-48BE-A0F3-7DB238ADBB63}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TrackingService.Domain", "src\services\tracking\TrackingService.Domain\TrackingService.Domain.csproj", "{0412B9DF-496E-426E-B9FB-640176B050DE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrackingService.Application", "src\services\tracking\TrackingService.Application\TrackingService.Application.csproj", "{BF86CAF8-EA97-4CB7-894F-394566B58046}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrackingService.Infrastructure", "src\services\tracking\TrackingService.Infrastructure\TrackingService.Infrastructure.csproj", "{BD68F2CB-7A2C-4D16-B278-918E52D011B1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -89,6 +99,22 @@ Global
 		{3A9EE8C1-1DF3-4FB9-9805-070021E9B9C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3A9EE8C1-1DF3-4FB9-9805-070021E9B9C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3A9EE8C1-1DF3-4FB9-9805-070021E9B9C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47A4BD2B-4E4E-48BE-A0F3-7DB238ADBB63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47A4BD2B-4E4E-48BE-A0F3-7DB238ADBB63}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47A4BD2B-4E4E-48BE-A0F3-7DB238ADBB63}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47A4BD2B-4E4E-48BE-A0F3-7DB238ADBB63}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0412B9DF-496E-426E-B9FB-640176B050DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0412B9DF-496E-426E-B9FB-640176B050DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0412B9DF-496E-426E-B9FB-640176B050DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0412B9DF-496E-426E-B9FB-640176B050DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF86CAF8-EA97-4CB7-894F-394566B58046}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF86CAF8-EA97-4CB7-894F-394566B58046}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF86CAF8-EA97-4CB7-894F-394566B58046}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF86CAF8-EA97-4CB7-894F-394566B58046}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD68F2CB-7A2C-4D16-B278-918E52D011B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD68F2CB-7A2C-4D16-B278-918E52D011B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD68F2CB-7A2C-4D16-B278-918E52D011B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD68F2CB-7A2C-4D16-B278-918E52D011B1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -107,6 +133,11 @@ Global
 		{8488FD80-7204-4F43-B50C-6E28E8B4C532} = {B1134192-6AD7-4313-BC40-BBCD50E60164}
 		{8F803453-2285-4365-8515-193CE888FCD6} = {B1134192-6AD7-4313-BC40-BBCD50E60164}
 		{3A9EE8C1-1DF3-4FB9-9805-070021E9B9C3} = {85CD1615-A566-416A-9A27-1429B278AF66}
+		{B3A2CE19-BCC9-4AD3-BD9C-26644CCC9025} = {E419BE56-2A78-478F-90F3-C180CDDB09A9}
+		{47A4BD2B-4E4E-48BE-A0F3-7DB238ADBB63} = {B3A2CE19-BCC9-4AD3-BD9C-26644CCC9025}
+		{0412B9DF-496E-426E-B9FB-640176B050DE} = {B3A2CE19-BCC9-4AD3-BD9C-26644CCC9025}
+		{BF86CAF8-EA97-4CB7-894F-394566B58046} = {B3A2CE19-BCC9-4AD3-BD9C-26644CCC9025}
+		{BD68F2CB-7A2C-4D16-B278-918E52D011B1} = {B3A2CE19-BCC9-4AD3-BD9C-26644CCC9025}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A0E20962-F6EB-458C-95BA-79ADF5392F1F}

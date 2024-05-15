@@ -1,4 +1,4 @@
-namespace Api;
+namespace TrackingService.Api;
 
 public class WeatherForecast
 {

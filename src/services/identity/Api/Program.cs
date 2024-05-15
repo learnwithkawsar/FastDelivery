@@ -10,8 +10,11 @@ namespace Api
             var builder = WebApplication.CreateBuilder(args);
             builder.AddIdentityInfrastructure();
             var app = builder.Build();
+            
+            
             app.UseIdentityInfrastructure();
             app.MapGet("/", () => "Identity Service is Running!!");
+           
             app.Run();
         }
     }

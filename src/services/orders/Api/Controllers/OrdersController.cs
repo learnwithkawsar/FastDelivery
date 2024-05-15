@@ -4,7 +4,7 @@ using FastDelivery.Service.Order.Application.Parcels.Dtos;
 using FastDelivery.Service.Order.Application.Parcels.Features;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Api.Controllers;
+namespace OrderService.Api.Controllers;
 public class OrdersController : VersionedApiController
 {
 
@@ -16,6 +16,15 @@ public class OrdersController : VersionedApiController
     {
         var command = new AddParcel.Command(request);
         var commandResponse = await Mediator.Send(command);
+        try
+        {
+            await DaprClientInstance.PublishEventAsync("fastdelivery-pubsub", "testtopic1", commandResponse);
+        }
+        catch (Exception ex)
+        {
+
+            throw;
+        }
 
         return commandResponse;
     }

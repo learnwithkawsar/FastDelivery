@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+      <AssemblyName>FastDelivery.Service.Tracking.Infrastructure</AssemblyName>
+      <RootNamespace>FastDelivery.Service.Tracking.Infrastructure</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\framework\Infrastructure\FastDelivery.Framework.Infrastructure.csproj" />
+    <ProjectReference Include="..\TrackingService.Application\TrackingService.Application.csproj" />
+  </ItemGroup>
+
+</Project>

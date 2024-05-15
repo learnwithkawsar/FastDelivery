@@ -17,12 +17,38 @@ services:
     command: [ "./daprd",
                "-app-id", "orderservice",                
                "-app-port", "5101",
-               "-components-path", "/components"
+               "-resources-path", "/components"
                  ] 
     depends_on: 
      - order-service
      - redis
+     #- rabbitmq
     network_mode: "service:order-service"
+    volumes:
+     - ./components:/components
+
+  tracking-service:
+    build:
+      context: .
+      dockerfile: src/services/tracking/TrackingService.Api/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=5102     
+    ports:
+      - "5102:5102"
+      - "50002:50001"
+  tracking-service-dapr: 
+    image: "daprio/daprd:latest" 
+    command: [ "./daprd",
+               "-app-id", "trackingservice",                
+               "-app-port", "5102",
+               "-resources-path", "/components"
+                 ] 
+    depends_on: 
+     - tracking-service
+     - redis
+     #- rabbitmq
+    network_mode: "service:tracking-service"
     volumes:
      - ./components:/components
 
@@ -35,20 +61,27 @@ services:
        - ASPNETCORE_HTTP_PORTS=5103
     ports:
       - "5103:5103"
-      - "50002:50001"
+      - "50010:50001"
   identity-service-dapr: 
     image: "daprio/daprd:latest" 
     command: [ "./daprd",
                "-app-id", "identityservice",                
                "-app-port", "5103",
-               "-components-path", "/components"
+               "-resources-path", "/components"
                  ] 
     depends_on: 
-        - identity-service
-        - redis
+     - identity-service
+     - redis
+     #- rabbitmq
     network_mode: "service:identity-service"
     volumes:
      - ./components:/components
+     
+  dapr-placement:
+    image: "daprio/dapr:1.9.4"
+    command: ["./placement", "-port", "50000", "-log-level", "debug"]
+    ports:
+      - "50000:50000"
   redis:
    image: redis
    hostname: redis

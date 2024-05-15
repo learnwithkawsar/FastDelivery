@@ -54,10 +54,19 @@ services:
     - ELASTICSEARCH_URL=http://localhost:9200
    networks:
     - elastic
+  rabbitmq:
+   hostname: rabbitmq
+   image: rabbitmq:3-management-alpine
+   ports:
+    - "5672:5672"
+    - "15672:15672"
+   networks:
+    - fastdelivery
 volumes:
   postgres-data:  
   mongo-data:
   elasticsearch-data:
+  components:
 networks:
   fastdelivery:
     name:  fastdelivery

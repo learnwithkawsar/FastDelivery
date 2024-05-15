@@ -8,6 +8,15 @@ services:
     networks:
      - fastdelivery
      - elastic
+   
+
+  tracking-service:
+    container_name: tracking
+    image: ${DOCKER_REGISTRY-}trackingapi       
+    
+    networks:
+     - fastdelivery
+     - elastic
 
   identity-service:
     container_name: identity
@@ -15,8 +24,7 @@ services:
        
     depends_on:
       postgres:
-        condition: service_healthy
-    #network_mode: "service:identity"
+        condition: service_healthy    
     networks:
      - fastdelivery
      - elastic

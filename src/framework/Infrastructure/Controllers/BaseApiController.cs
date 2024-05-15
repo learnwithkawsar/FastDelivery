@@ -1,9 +1,11 @@
-﻿using MediatR;
+﻿using Dapr.Client;
+using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using DaprClient = Dapr.Client.DaprClient;
 
 namespace FastDelivery.Framework.Infrastructure.Controllers;
 [ApiController]
@@ -12,8 +14,10 @@ namespace FastDelivery.Framework.Infrastructure.Controllers;
 public class BaseApiController : ControllerBase
 {
     private ISender _mediator = null!;
-
+    private  DaprClient _daprClient = null;
     protected ISender Mediator => _mediator ??= HttpContext.RequestServices.GetRequiredService<ISender>();
+    protected DaprClient DaprClientInstance => _daprClient ??= HttpContext.RequestServices.GetRequiredService<DaprClient>();
+
     protected ILogger<BaseApiController> _Logger => HttpContext.RequestServices.GetRequiredService<ILogger<BaseApiController>>();
 
 }
