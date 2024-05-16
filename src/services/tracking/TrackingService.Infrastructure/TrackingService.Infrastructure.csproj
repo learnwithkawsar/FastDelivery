@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\buildingBlocks\Healthchecks\Healthchecks.csproj" />
     <ProjectReference Include="..\..\..\framework\Infrastructure\FastDelivery.Framework.Infrastructure.csproj" />
     <ProjectReference Include="..\..\..\framework\Persistence.Mongo\FastDelivery.Framework.Persistence.Mongo.csproj" />
     <ProjectReference Include="..\TrackingService.Application\TrackingService.Application.csproj" />

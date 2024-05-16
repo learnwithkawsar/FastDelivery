@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AspNetCore.HealthChecks.UI.Client" Version="8.0.1" />
     <PackageReference Include="Dapr.AspNetCore" Version="1.13.1" />
     <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.9.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.3" />
@@ -50,6 +51,7 @@
     </ItemGroup>
 
     <ItemGroup>
+    <ProjectReference Include="..\..\buildingBlocks\Healthchecks\Healthchecks.csproj" />
     <ProjectReference Include="..\Core\FastDelivery.Framework.Core.csproj" />
   </ItemGroup>
 

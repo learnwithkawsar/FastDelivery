@@ -76,7 +76,18 @@ services:
     network_mode: "service:identity-service"
     volumes:
      - ./components:/components
-     
+  webstatus:
+    environment:
+      - ASPNETCORE_URLS=http://0.0.0.0:80
+      - HealthChecksUI__HealthChecks__0__Name=Order API
+      - HealthChecksUI__HealthChecks__0__Uri=http://order-service:5101/hc
+      - HealthChecksUI__HealthChecks__1__Name=Tracking API
+      - HealthChecksUI__HealthChecks__1__Uri=http://tracking-service:5102/hc
+      - HealthChecksUI__HealthChecks__2__Name=Identity API
+      - HealthChecksUI__HealthChecks__2__Uri=http://identity-service:5103/hc 
+    ports:
+      - "5107:80"
+
   dapr-placement:
     image: "daprio/dapr:1.9.4"
     command: ["./placement", "-port", "50000", "-log-level", "debug"]

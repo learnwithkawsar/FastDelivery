@@ -28,4 +28,12 @@ services:
     networks:
      - fastdelivery
      - elastic
+  webstatus:
+    image: ${DOCKER_REGISTRY-}webstatus
+    build:
+      context: .
+      dockerfile: src/web/WebStatus/Dockerfile
+    networks:
+     - fastdelivery
+     - elastic
 

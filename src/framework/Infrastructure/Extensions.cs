@@ -7,6 +7,7 @@ using FastDelivery.Framework.Infrastructure.Options;
 using FastDelivery.Framework.Infrastructure.Services;
 using FastDelivery.Framework.Infrastructure.Swagger;
 using FluentValidation;
+using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpLogging;
@@ -78,6 +79,7 @@ public static class Extensions
 
         app.MapSubscribeHandler();
         app.MapControllers();
+       
         //app.UseSerilogRequestLogging(opt => {
         //    opt.EnrichDiagnosticContext = (diagnosticContext, httpContext) =>
         //    {
@@ -87,5 +89,6 @@ public static class Extensions
         //});
         // app.MapSubscribeHandler();
         if (enableSwagger) app.UseSwaggerExtension(env);
+        app.MapCustomHealthChecks("/hc", "/liveness", UIResponseWriter.WriteHealthCheckUIResponse);
     }
 }
