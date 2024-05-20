@@ -1,6 +1,6 @@
 using FastDelivery.Service.Order.Infrastructure;
 
-namespace Api;
+namespace OrderService.Api;
 
 public class Program
 {

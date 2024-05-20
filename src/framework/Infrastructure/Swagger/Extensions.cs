@@ -36,7 +36,7 @@ public static class Extensions
             });
         }
     }
-    internal static void AddSwaggerExtension(this IServiceCollection services, IConfiguration configuration)
+    public static void AddSwaggerExtension(this IServiceCollection services, IConfiguration configuration)
     {
         var swaggerOptions = services.BindValidateReturn<SwaggerOptions>(configuration);
         _ = services.AddSwaggerGen(config =>

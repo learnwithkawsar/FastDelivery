@@ -2,14 +2,14 @@
 using Microsoft.Extensions.DependencyInjection;
 
 namespace FastDelivery.Framework.Infrastructure.Services;
-internal static class Extensions
+public static class Extensions
 {
-    internal static IServiceCollection AddInternalServices(this IServiceCollection services) =>
+    public static IServiceCollection AddInternalServices(this IServiceCollection services) =>
         services
             .AddServices(typeof(ITransientService), ServiceLifetime.Transient)
             .AddServices(typeof(IScopedService), ServiceLifetime.Scoped);
 
-    internal static IServiceCollection AddServices(this IServiceCollection services, Type interfaceType, ServiceLifetime lifetime)
+    public static IServiceCollection AddServices(this IServiceCollection services, Type interfaceType, ServiceLifetime lifetime)
     {
         var interfaceTypes =
             AppDomain.CurrentDomain.GetAssemblies()
@@ -32,7 +32,7 @@ internal static class Extensions
         return services;
     }
 
-    internal static IServiceCollection AddService(this IServiceCollection services, Type serviceType, Type implementationType, ServiceLifetime lifetime) =>
+    public static IServiceCollection AddService(this IServiceCollection services, Type serviceType, Type implementationType, ServiceLifetime lifetime) =>
        lifetime switch
        {
            ServiceLifetime.Transient => services.AddTransient(serviceType, implementationType),

@@ -1,4 +1,5 @@
 ﻿using FastDelivery.Framework.Core.Domain;
+using System.ComponentModel.DataAnnotations;
 
 namespace FastDelivery.Service.Order.Domain;
 
@@ -22,6 +23,8 @@ public class ParcelInfo : BaseEntity
     }
 
     public required string ParcelId { get; set; }
+    [Required]
+    [MaxLength(75)]
     public required string InvoiceId { get; set; }
     public required string FullName { get; set; }
     public required string MobileNo { get; set; }

@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "OrderService.Test": {
+      "commandName": "Project",
+      "hotReloadEnabled": false,
+      "nativeDebugging": false
+    }
+  }
+}

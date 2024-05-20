@@ -12,15 +12,14 @@ namespace FastDelivery.Service.Tracking.Application.Trackings.Features;
 public record AddTrackingHistoryCommand(string ParcelId, string InvoiceId, string TrackingStatus) : IRequest<Guid>
 { }
 
-public sealed class Handler : IRequestHandler<AddTrackingHistoryCommand, Guid>
+public  class AddTrackingHistoryCommandHandler : IRequestHandler<AddTrackingHistoryCommand, Guid>
 {
-    private readonly ITrackingRepository _trackingRepository;
-    private readonly IMapper _mapper;
+    private readonly ITrackingRepository _trackingRepository;   
 
-    public Handler(ITrackingRepository trackingRepository, IMapper mapper)
+    public AddTrackingHistoryCommandHandler(ITrackingRepository trackingRepository)
     {
         _trackingRepository = trackingRepository;
-        _mapper = mapper;
+        
     }
 
     public async Task<Guid> Handle(AddTrackingHistoryCommand request, CancellationToken cancellationToken)
