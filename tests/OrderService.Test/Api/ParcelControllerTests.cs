@@ -1,4 +1,6 @@
-﻿using System.Net.Http.Headers;
+﻿using FastDelivery.Framework.Core.Pagination;
+using MongoDB.Bson;
+using System.Net.Http.Headers;
 
 namespace OrderService.IntegrationTests.Api;
 
@@ -66,6 +68,35 @@ public class ParcelControllerTests : IClassFixture<WebAppFactory<Program>>
 
         // Act & Assert
         await Assert.ThrowsAsync<ArgumentException>(async () => await handler.Handle(command, default));
+    }
+
+    [Fact]
+    public async Task SearchAsync_ReturnsPagedListOfParcels()
+    {
+        // Arrange
+        var parameters = new ParcelParametersDto
+        {
+            // Set up your test parameters here
+            //InvoiceId = "123456",
+            PageNumber = 1,
+            PageSize = 10
+        };
+
+        var content = new StringContent(JsonConvert.SerializeObject(parameters), Encoding.UTF8, "application/json");
+
+        // Act
+        var response = await _client.PostAsync($"/api/v1/orders/search", content);
+
+        // Assert
+        response.EnsureSuccessStatusCode(); // Status Code 200-299
+        string responseString = await response.Content.ReadAsStringAsync();
+        var parcels = PagedList<ParcelDto>.FromJson(responseString);
+
+        Assert.NotNull(parcels);
+        Assert.True(parcels.Data.Count > 0); // Adjust this assertion based on expected results
+                                             //await Verify
+
+        await Verify(parcels);
     }
 
 }

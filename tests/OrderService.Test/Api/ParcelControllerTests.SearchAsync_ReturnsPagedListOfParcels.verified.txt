@@ -1,0 +1,110 @@
+﻿{
+  Data: [
+    {
+      Id: Guid_1,
+      ParcelId: 4107629,
+      InvoiceId: 12345,
+      FullName: Test Name,
+      MobileNo: 01475201214,
+      Address: address,
+      COD_Amount: 50.0,
+      Note: note
+    },
+    {
+      Id: Guid_2,
+      ParcelId: 98870344,
+      InvoiceId: 33498237,
+      FullName: Test Name,
+      MobileNo: 01475201214,
+      Address: address,
+      COD_Amount: 50.0,
+      Note: note
+    },
+    {
+      Id: Guid_3,
+      ParcelId: 44405186,
+      InvoiceId: 1879752,
+      FullName: Test Name,
+      MobileNo: 01475201214,
+      Address: address,
+      COD_Amount: 50.0,
+      Note: note
+    },
+    {
+      Id: Guid_4,
+      ParcelId: 57144102,
+      InvoiceId: 49890967,
+      FullName: Test Name,
+      MobileNo: 01475201214,
+      Address: address,
+      COD_Amount: 50.0,
+      Note: note
+    },
+    {
+      Id: Guid_5,
+      ParcelId: 62400277,
+      InvoiceId: 4339226,
+      FullName: Test Name,
+      MobileNo: 01475201214,
+      Address: address,
+      COD_Amount: 50.0,
+      Note: note
+    },
+    {
+      Id: Guid_6,
+      ParcelId: 35220283,
+      InvoiceId: 3433899,
+      FullName: Test Name,
+      MobileNo: 01475201214,
+      Address: address,
+      COD_Amount: 50.0,
+      Note: note
+    },
+    {
+      Id: Guid_7,
+      ParcelId: 31843965,
+      InvoiceId: 66716315,
+      FullName: Test Name,
+      MobileNo: 01475201214,
+      Address: address,
+      COD_Amount: 50.0,
+      Note: note
+    },
+    {
+      Id: Guid_8,
+      ParcelId: 6646036,
+      InvoiceId: 50446112,
+      FullName: Test Name,
+      MobileNo: 01475201214,
+      Address: address,
+      COD_Amount: 50.0,
+      Note: note
+    },
+    {
+      Id: Guid_9,
+      ParcelId: 42818018,
+      InvoiceId: 66012956,
+      FullName: Test Name,
+      MobileNo: 01475201214,
+      Address: address,
+      COD_Amount: 50.0,
+      Note: note
+    },
+    {
+      Id: Guid_10,
+      ParcelId: 11495101,
+      InvoiceId: 91277942,
+      FullName: Test Name,
+      MobileNo: 01475201214,
+      Address: address,
+      COD_Amount: 50.0,
+      Note: note
+    }
+  ],
+  PageNumber: 1,
+  PageSize: 10,
+  TotalPages: 2,
+  TotalItems: 15,
+  IsFirstPage: true,
+  IsLastPage: false
+}
