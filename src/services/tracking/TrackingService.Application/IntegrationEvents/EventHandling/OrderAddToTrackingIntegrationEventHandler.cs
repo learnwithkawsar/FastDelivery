@@ -1,6 +1,4 @@
-﻿using Dapr.Client;
-using FastDelivery.BuildingBlocks.EventBus.Abstractions;
-using FastDelivery.Framework.Core.Services;
+﻿using FastDelivery.BuildingBlocks.EventBus.Abstractions;
 using FastDelivery.Service.Tracking.Application.IntegrationEvents.Events;
 using FastDelivery.Service.Tracking.Application.Trackings.Features;
 using MediatR;
@@ -20,9 +18,9 @@ public class OrderAddToTrackingIntegrationEventHandler : IIntegrationEventHandle
 
     public async Task Handle(OrderAddToTrackingIntegrationEvent @event)
     {
-        var req = new AddTrackingHistoryCommand( @event.ParcelDto.ParcelId!, @event.ParcelDto.InvoiceId!, "Placed");
+        var req = new AddTrackingHistoryCommand(@event.ParcelDto.ParcelId!, @event.ParcelDto.InvoiceId!, "Placed");
         await _mediatR.Send(req);
-        _logger.LogInformation($"Event Completed : { nameof( OrderAddToTrackingIntegrationEvent)}");
+        _logger.LogInformation($"Event Completed : {nameof(OrderAddToTrackingIntegrationEvent)}");
         await Task.Delay(3000);
     }
 }

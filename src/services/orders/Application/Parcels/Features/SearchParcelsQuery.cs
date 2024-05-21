@@ -1,13 +1,4 @@
-﻿using FastDelivery.Framework.Core.Pagination;
-using FastDelivery.Service.Order.Application.Parcels.Dtos;
-using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace FastDelivery.Service.Order.Application.Parcels.Features;
+﻿namespace FastDelivery.Service.Order.Application.Parcels.Features;
 public record SearchParcelsQuery(ParcelParametersDto parameters) : IRequest<PagedList<ParcelDto>>
 {
 }

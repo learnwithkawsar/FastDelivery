@@ -1,16 +1,10 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using FastDelivery.Framework.Infrastructure.Options;
+using Microsoft.AspNetCore.Builder;
+using Serilog;
 using Serilog.Core;
 using Serilog.Events;
-using Serilog.Formatting.Compact;
-using Serilog;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using FastDelivery.Framework.Infrastructure.Options;
 using Serilog.Exceptions;
-using Microsoft.Extensions.Configuration;
+using Serilog.Formatting.Compact;
 using Serilog.Sinks.Elasticsearch;
 using System.Reflection;
 
@@ -80,8 +74,8 @@ public static class Extensions
                 //{Assembly.GetExecutingAssembly().GetName().Name.ToLower().Replace(".", "-")}-
             });
         }
-       
-    }   
+
+    }
 
     private static void SetMinimumLogLevel(LoggerConfiguration serilogConfig, string minLogLevel)
     {

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace FastDelivery.Service.Order.Application.Parcels.Dtos;
+﻿namespace FastDelivery.Service.Order.Application.Parcels.Dtos;
 public class AddParcelDto
 {
     public required string InvoiceId { get; set; }
@@ -13,4 +7,5 @@ public class AddParcelDto
     public required string Address { get; set; }
     public decimal COD_Amount { get; set; }
     public string? Note { get; set; }
+    public int MerchantId { get; set; }
 }

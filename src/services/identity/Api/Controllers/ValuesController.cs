@@ -1,7 +1,5 @@
-﻿using Dapr;
-using Dapr.Client;
+﻿using Dapr.Client;
 using FastDelivery.Service.Identity.Domain.Users;
-using FastDelivery.Service.Identity.Infrastructure.Persistence;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -23,37 +21,37 @@ public class ValuesController : ControllerBase
     // GET: api/<ValuesController>
     [HttpGet]
     public async Task<IEnumerable<WeatherForecast>> GetAsync()
-    {        
+    {
         var forecasts = await _daprClient.InvokeMethodAsync<IEnumerable<WeatherForecast>>(
                  HttpMethod.Get,
                  "parcelservice",
                  "weatherForecast");
         var httpClient = DaprClient.CreateInvokeHttpClient("parcelservice");
-       var res = await httpClient.GetAsync("/weatherForecast");
+        var res = await httpClient.GetAsync("/weatherForecast");
         var data = await res.Content.ReadAsStringAsync();
-        
+
         var date = await _daprClient.GetStateAsync<DateTime>(DAPR_STORE_NAME, "date");
         return forecasts;
     }
 
     // GET api/<ValuesController>/5
-   
+
     [HttpGet("{id}")]
     public async Task<string> GetAsync(int id)
     {
-     var   adminUser = new ApplicationUser
+        var adminUser = new ApplicationUser
         {
-            
+
             Email = "admin@admin.com",
             UserName = "admin",
             EmailConfirmed = true,
             PhoneNumberConfirmed = true,
             NormalizedEmail = "admin@admin.com".ToUpperInvariant(),
             NormalizedUserName = "admin".ToUpperInvariant(),
-            
+
         };
 
-       
+
         var password = new PasswordHasher<ApplicationUser>();
         adminUser.PasswordHash = password.HashPassword(adminUser, "123Pa$$word!");
         await _userManager.CreateAsync(adminUser);
@@ -63,7 +61,7 @@ public class ValuesController : ControllerBase
     //[HttpPost]
     //[Topic("fastdelivery-pubsub", "testtopic1")]
     //// POST api/<ValuesController>
-   
+
     //public async Task<string> Post([FromBody] string value)
     //{
     //    return value;

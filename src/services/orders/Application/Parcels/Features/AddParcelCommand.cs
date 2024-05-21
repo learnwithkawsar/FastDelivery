@@ -1,27 +1,26 @@
-﻿using FastDelivery.Service.Order.Application.Parcels.Dtos;
-using FastDelivery.Service.Order.Domain;
-using FluentValidation;
-using Mapster;
-using MediatR;
-using System.ComponentModel.DataAnnotations;
-using static Google.Rpc.Context.AttributeContext.Types;
-using System.Threading;
-
-namespace FastDelivery.Service.Order.Application.Parcels.Features;
-public record AddParcelCommand(string InvoiceId, string FullName, string MobileNo, string Address, decimal COD_Amount, string? Note)
+﻿namespace FastDelivery.Service.Order.Application.Parcels.Features;
+public record AddParcelCommand(int MerchantId, string InvoiceId, string FullName, string MobileNo, string Address, decimal COD_Amount, string? Note)
     : IRequest<ParcelDto>
 {
 }
 
-
-public  class Vailator : AbstractValidator<AddParcelCommand>
+public class Vailator : AbstractValidator<AddParcelCommand>
 {
-    public Vailator()
+    public Vailator(IParcelRepository parcelRepository)
     {
         RuleFor(p => p.InvoiceId)
             .NotEmpty()
             .MaximumLength(75)
             .WithName("InvoiceId");
+
+        RuleFor(p => new { p.InvoiceId, p.MerchantId })
+             .MustAsync(async (x, cancellation) =>
+             {
+                 var parcel = await parcelRepository.FindOneAsync(p => p.InvoiceId == x.InvoiceId && p.MerchantId == x.MerchantId, cancellation);
+                 return parcel == null;
+             })
+             .WithMessage("The combination of InvoiceId and MarchatId must be unique.");
+
         RuleFor(p => p.FullName)
           .NotEmpty()
           .MaximumLength(75)
@@ -40,21 +39,22 @@ public  class Vailator : AbstractValidator<AddParcelCommand>
 
     }
 }
+
 public class AddParcelCommandHandler : IRequestHandler<AddParcelCommand, ParcelDto>
 {
     private readonly IParcelRepository _parcelRepository;
-    private readonly IValidator<ParcelInfo> _validator;
 
-    public AddParcelCommandHandler(IParcelRepository parcelRepository, IValidator<ParcelInfo> validator)
+    public AddParcelCommandHandler(IParcelRepository parcelRepository)
     {
         _parcelRepository = parcelRepository;
-        _validator = validator;
     }
 
     public async Task<ParcelDto> Handle(AddParcelCommand request, CancellationToken cancellationToken)
     {
-        string parcelId = "0987654321";
+        var rand = new Random();
+        string parcelId = rand.Next(1000000, 99999999).ToString();
         var parcelToAdd = ParcelInfo.Create(
+            request.MerchantId,
             parcelId,
             request.InvoiceId,
             request.FullName,
@@ -65,31 +65,19 @@ public class AddParcelCommandHandler : IRequestHandler<AddParcelCommand, ParcelD
             );
 
         // Perform validation
-        await ValidateParcelInfo(request, cancellationToken);
+        await ValidateParcelInfo(request, _parcelRepository, cancellationToken);
 
         await _parcelRepository.AddAsync(parcelToAdd, cancellationToken);
         return parcelToAdd.Adapt<ParcelDto>();
     }
 
-    private async Task ValidateParcelInfo(AddParcelCommand addParcelCommand,CancellationToken cancellationToken)
+    private async Task ValidateParcelInfo(AddParcelCommand addParcelCommand, IParcelRepository parcelRepository, CancellationToken cancellationToken)
     {
-        //var validationContext = new ValidationContext(parcel);
-        //var validationResults = new List<ValidationResult>();
-
-        //bool isValid = Validator.TryValidateObject(parcel, validationContext, validationResults, true);
-
-        //if (!isValid)
-        //{
-        //    var errors = string.Join("; ", validationResults.Select(vr => vr.ErrorMessage));
-        //    throw new ArgumentException(errors);
-        //}
-
-
-        var validator = new Vailator();
+        var validator = new Vailator(parcelRepository);
         var validationResult = await validator.ValidateAsync(addParcelCommand, cancellationToken);
         if (!validationResult.IsValid)
         {
-            var errors = string.Join("; ", validationResult.Errors.Select(e => e.ErrorMessage));
+            string errors = string.Join("; ", validationResult.Errors.Select(e => e.ErrorMessage));
             throw new ArgumentException(errors);
         }
     }

@@ -1,11 +1,6 @@
 ﻿using FastDelivery.Framework.Core.Exceptions;
 using Microsoft.AspNetCore.WebUtilities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FastDelivery.Framework.Infrastructure.Middlewares;
 public class ExceptionDetails

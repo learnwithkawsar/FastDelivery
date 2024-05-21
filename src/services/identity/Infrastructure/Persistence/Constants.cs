@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace FastDelivery.Service.Identity.Infrastructure.Persistence;
+﻿namespace FastDelivery.Service.Identity.Infrastructure.Persistence;
 public static class Constants
 {
     public const string Client = "console";

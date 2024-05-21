@@ -21,6 +21,6 @@ global using Microsoft.Net.Http.Headers;
 global using Mongo2Go;
 global using Moq;
 global using Newtonsoft.Json;
-global using System.Text;
 global using OrderService.Api;
 global using OrderService.IntegrationTests.TestSuite;
+global using System.Text;

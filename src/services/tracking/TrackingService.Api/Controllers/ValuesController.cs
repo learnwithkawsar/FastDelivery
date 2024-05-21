@@ -1,5 +1,4 @@
 ﻿using Dapr.Client;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace TrackingService.Api.Controllers;
@@ -20,8 +19,8 @@ public class ValuesController : ControllerBase
         string res = "";
         try
         {
-          await   _daprClient.SaveStateAsync("statestore", "orderId",Guid.NewGuid());
-          
+            await _daprClient.SaveStateAsync("statestore", "orderId", Guid.NewGuid());
+
         }
         catch (Exception ex)
         {

@@ -3,15 +3,12 @@ using FastDelivery.Framework.Infrastructure.Auth.OpenIddict;
 using FastDelivery.Service.Identity.Application;
 using FastDelivery.Service.Identity.Domain.Users;
 using FastDelivery.Service.Identity.Infrastructure.Persistence;
-using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
-using System;
 using static OpenIddict.Abstractions.OpenIddictConstants;
 
 namespace FastDelivery.Service.Identity.Infrastructure;
@@ -48,7 +45,7 @@ public static class Extensions
     }
     public static void UseIdentityInfrastructure(this WebApplication app)
     {
-        app.UseInfrastructure(app.Environment, enableSwagger);        
+        app.UseInfrastructure(app.Environment, enableSwagger);
 
     }
     internal static IServiceCollection AddIdentityExtensions(this IServiceCollection services)

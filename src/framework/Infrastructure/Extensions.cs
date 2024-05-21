@@ -64,7 +64,7 @@ public static class Extensions
             logging.RequestBodyLogLimit = 4096;
             logging.ResponseBodyLogLimit = 4096;
         });
-       
+
     }
 
     public static void UseInfrastructure(this WebApplication app, IWebHostEnvironment env, bool enableSwagger = true)
@@ -79,7 +79,7 @@ public static class Extensions
 
         app.MapSubscribeHandler();
         app.MapControllers();
-       
+
         //app.UseSerilogRequestLogging(opt => {
         //    opt.EnrichDiagnosticContext = (diagnosticContext, httpContext) =>
         //    {

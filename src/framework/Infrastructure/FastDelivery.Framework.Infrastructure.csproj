@@ -51,6 +51,7 @@
     </ItemGroup>
 
     <ItemGroup>
+    <ProjectReference Include="..\..\buildingBlocks\EventBus\EventBus.csproj" />
     <ProjectReference Include="..\..\buildingBlocks\Healthchecks\Healthchecks.csproj" />
     <ProjectReference Include="..\Core\FastDelivery.Framework.Core.csproj" />
   </ItemGroup>

@@ -1,31 +1,31 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
-  <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
-    <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <UserSecretsId>89044e16-49e4-49d1-b0e8-314bbe02aa98</UserSecretsId>
-    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
-    <DockerfileContext>..\..\..\..</DockerfileContext>
-    <DockerComposeProjectPath>..\..\..\..\docker-compose.dcproj</DockerComposeProjectPath>
-    
-  </PropertyGroup>
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <UserSecretsId>89044e16-49e4-49d1-b0e8-314bbe02aa98</UserSecretsId>
+        <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+        <DockerfileContext>..\..\..\..</DockerfileContext>
+        <DockerComposeProjectPath>..\..\..\..\docker-compose.dcproj</DockerComposeProjectPath>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.19.6" />
-  </ItemGroup>
+    </PropertyGroup>
 
-  
+    <ItemGroup>
+        <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.19.6" />
+    </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Application\OrderService.Application.csproj" />
-    <ProjectReference Include="..\Infrastructure\OrderService.Infrastructure.csproj" />
-  </ItemGroup>
 
-  
 
-  <ItemGroup>
-    <Folder Include="Logs\" />
-  </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\Application\OrderService.Application.csproj" />
+        <ProjectReference Include="..\Infrastructure\OrderService.Infrastructure.csproj" />
+    </ItemGroup>
+
+
+
+    <ItemGroup>
+        <Folder Include="Logs\" />
+    </ItemGroup>
 
 </Project>

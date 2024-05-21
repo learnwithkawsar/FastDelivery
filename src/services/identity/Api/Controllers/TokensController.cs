@@ -1,13 +1,13 @@
-﻿using Microsoft.AspNetCore;
+﻿using FastDelivery.Service.Identity.Domain.Users;
+using MassTransit.Internals;
+using Microsoft.AspNetCore;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using OpenIddict.Abstractions;
 using OpenIddict.Server.AspNetCore;
-using static OpenIddict.Abstractions.OpenIddictConstants;
 using System.Security.Claims;
-using MassTransit.Internals;
-using Microsoft.AspNetCore.Identity;
-using FastDelivery.Service.Identity.Domain.Users;
+using static OpenIddict.Abstractions.OpenIddictConstants;
 
 namespace Api.Controllers
 {

@@ -5,7 +5,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using OpenIddict.Validation.AspNetCore;
-using System;
 using System.Reflection;
 using static OpenIddict.Abstractions.OpenIddictConstants;
 
@@ -75,8 +74,8 @@ public static class Extensions
             }
             options.UseOpenIddict();
         });
-       
+
     }
 
-    
+
 }

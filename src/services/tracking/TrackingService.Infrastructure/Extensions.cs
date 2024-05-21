@@ -1,15 +1,12 @@
-﻿using FastDelivery.Service.Tracking.Application;
-using Microsoft.AspNetCore.Builder;
-using FastDelivery.Framework.Infrastructure;
+﻿using FastDelivery.Framework.Infrastructure;
 using FastDelivery.Framework.Infrastructure.Auth.OpenId;
-using FastDelivery.BuildingBlocks.EventBus.Abstractions;
-using FastDelivery.BuildingBlocks.EventBus;
-using Microsoft.Extensions.DependencyInjection;
+using FastDelivery.Framework.Persistence.Mongo;
+using FastDelivery.Service.Tracking.Application;
 using FastDelivery.Service.Tracking.Application.IntegrationEvents.EventHandling;
 using FastDelivery.Service.Tracking.Application.Trackings;
-using FastDelivery.Framework.Persistence.Mongo;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
-using HealthChecks.UI.Client;
 namespace FastDelivery.Service.Tracking.Infrastructure;
 
 public static class Extensions
@@ -34,6 +31,6 @@ public static class Extensions
     public static void UseTrackingInfrastructure(this WebApplication app)
     {
         app.UseInfrastructure(app.Environment);
-       
+
     }
 }

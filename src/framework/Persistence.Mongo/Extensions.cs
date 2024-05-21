@@ -1,7 +1,7 @@
 ﻿using FastDelivery.Framework.Core.Database;
+using FastDelivery.Framework.Infrastructure.Options;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using FastDelivery.Framework.Infrastructure.Options;
 
 namespace FastDelivery.Framework.Persistence.Mongo;
 public static class Extensions
