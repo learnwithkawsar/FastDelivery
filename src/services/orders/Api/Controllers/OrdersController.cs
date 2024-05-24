@@ -45,4 +45,13 @@ public class OrdersController : VersionedApiController
         var commandResponse = await Mediator.Send(command);
         return commandResponse;
     }
+
+    [HttpPost("search/{invoiceId}")]
+    [ProducesResponseType(200, Type = typeof(ParcelDto))]
+    public async Task<ParcelDto> SearchByInvoiceIdAsync(string invoiceId)
+    {
+        var command = new GetParcelDetailsQuery(invoiceId);
+        var commandResponse = await Mediator.Send(command);
+        return commandResponse;
+    }
 }

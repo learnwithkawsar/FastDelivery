@@ -1,6 +1,16 @@
 version: '3.8'
 
 services:
+  gateway:
+    build:
+      context: .
+      dockerfile: src/buildingBlocks/Gateways/Gateway/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=5999      
+    ports:
+      - "5999:5999"
+      
   order-service:
     build:
       context: .
@@ -8,7 +18,6 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_HTTP_PORTS=5101
-      #- ASPNETCORE_HTTPS_PORTS=8081
     ports:
       - "5101:5101"
       - "50001:50001"
@@ -84,7 +93,9 @@ services:
       - HealthChecksUI__HealthChecks__1__Name=Tracking API
       - HealthChecksUI__HealthChecks__1__Uri=http://tracking-service:5102/hc
       - HealthChecksUI__HealthChecks__2__Name=Identity API
-      - HealthChecksUI__HealthChecks__2__Uri=http://identity-service:5103/hc 
+      - HealthChecksUI__HealthChecks__2__Uri=http://identity-service:5103/hc
+      - HealthChecksUI__HealthChecks__3__Name=Gateway API
+      - HealthChecksUI__HealthChecks__3__Uri=http://gateway:5999/hc
     ports:
       - "5107:80"
 

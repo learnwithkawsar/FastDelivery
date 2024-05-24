@@ -4,8 +4,10 @@ using FastDelivery.Framework.Persistence.Mongo;
 using FastDelivery.Service.Order.Application.Parcels;
 using FastDelivery.Service.Order.Application.Parcels.Dtos;
 using FastDelivery.Service.Order.Domain;
+using Mapster;
 using MongoDB.Driver;
 using MongoDB.Driver.Linq;
+using static OpenIddict.Abstractions.OpenIddictConstants;
 
 namespace FastDelivery.Service.Order.Infrastructure.Repositories;
 public class ParcelRepository : MongoRepository<ParcelInfo, Guid>, IParcelRepository
@@ -28,5 +30,18 @@ public class ParcelRepository : MongoRepository<ParcelInfo, Guid>, IParcelReposi
         }
         queryable = queryable.OrderBy(p => p.CreatedOn);
         return await queryable.ApplyPagingAsync<ParcelInfo, ParcelDto>(parameters.PageNumber, parameters.PageSize, cancellationToken);
+    }
+
+    public async Task<ParcelDto> GetParcelAsync<ParcelDto>(string invoiceId, CancellationToken cancellationToken = default)
+    {
+        var queryable = _dbContext.GetCollection<ParcelInfo>().AsQueryable();
+        if (!string.IsNullOrEmpty(invoiceId))
+        {
+            string keyword = invoiceId.ToLower();
+            queryable = queryable.Where(t => t.InvoiceId.ToLower().Contains(keyword));
+        }
+        var parcelInfo = await queryable.FirstOrDefaultAsync();
+        return parcelInfo.Adapt<ParcelDto>();
+
     }
 }

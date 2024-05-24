@@ -5,7 +5,7 @@ namespace FastDelivery.Service.Order.Domain;
 
 public class ParcelInfo : BaseEntity
 {
-    public static ParcelInfo Create(int merchantId, string parcelId, string invoiceId, string fullName, string mobileNo, string address, decimal cOD_Amount, string? note)
+    public static ParcelInfo Create(int merchantId, string parcelId, string invoiceId, string fullName, string mobileNo, string address, decimal cOD_Amount, string? note, string currentStatus, string nextStatus)
     {
         ParcelInfo parcelInfo = new()
         {
@@ -16,7 +16,9 @@ public class ParcelInfo : BaseEntity
             MobileNo = mobileNo!,
             Address = address!,
             COD_Amount = cOD_Amount!,
-            Note = note
+            Note = note,
+            CurrentStatus = currentStatus,
+            NextStatus = nextStatus
         };
         //var @event = new ParcelCreateEvent()
         return parcelInfo;
@@ -32,5 +34,7 @@ public class ParcelInfo : BaseEntity
     public required string Address { get; set; }
     public decimal COD_Amount { get; set; }
     public string? Note { get; set; }
+    public string CurrentStatus { get; set; } = default!;
+    public string NextStatus { get; set; } = string.Empty;
 
 }

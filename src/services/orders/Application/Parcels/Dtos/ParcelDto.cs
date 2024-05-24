@@ -2,6 +2,7 @@
 public class ParcelDto
 {
     public Guid Id { get; set; }
+    public int MerchantId { get; set; }
     public string? ParcelId { get; set; }
     public string? InvoiceId { get; set; }
     public string? FullName { get; set; }
@@ -9,4 +10,6 @@ public class ParcelDto
     public string? Address { get; set; }
     public decimal COD_Amount { get; set; }
     public string? Note { get; set; }
+    public string? CurrentStatus { get; set; }
+    public string? NextStatus { get; set; }
 }

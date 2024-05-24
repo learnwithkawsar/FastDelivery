@@ -61,7 +61,9 @@ public class AddParcelCommandHandler : IRequestHandler<AddParcelCommand, ParcelD
             request.MobileNo,
             request.Address,
             request.COD_Amount,
-            request.Note
+            request.Note,
+            ParcelConstants.ORDER_PLACED,
+            ParcelConstants.ORDER_PROCESSING
             );
 
         // Perform validation

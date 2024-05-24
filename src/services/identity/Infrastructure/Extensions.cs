@@ -25,7 +25,7 @@ public static class Extensions
         builder.ConfigureAuthServer<AppIndentityDbContext>(dbContextAssembly);
         ApplyMigration<AppIndentityDbContext>(builder.Services.BuildServiceProvider());
         builder.Services.AddHostedService<SeedClientsAndScopes>();
-        string connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+        string connectionString = builder.Configuration.GetConnectionString("DefaultConnection")!;
         builder.Services
                .AddHealthChecks()
                .AddCheck("self", () => HealthCheckResult.Healthy())

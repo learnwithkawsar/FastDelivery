@@ -5,3 +5,4 @@ global using FastDelivery.Service.Order.Domain;
 global using FluentValidation;
 global using Mapster;
 global using MediatR;
+global using FastDelivery.Framework.Core.Constants;

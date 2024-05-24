@@ -2,6 +2,13 @@ version: '3.8'
 name: fastdelivery
 
 services:
+
+  gateway:
+    container_name: gateway
+    image: ${DOCKER_REGISTRY-}gateway        
+    networks:
+     - fastdelivery
+     - elastic
   order-service:
     container_name: order
     image: ${DOCKER_REGISTRY-}orderapi        
