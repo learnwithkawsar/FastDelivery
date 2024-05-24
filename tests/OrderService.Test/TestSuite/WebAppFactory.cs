@@ -25,7 +25,7 @@ public class WebAppFactory<TProgram> : WebApplicationFactory<TProgram> where TPr
             var sp = services.BuildServiceProvider();
             var config = sp.GetRequiredService<IConfiguration>();
 
-            _mongoDbRunner = MongoDbRunner.StartForDebugging();
+            _mongoDbRunner = MongoDbRunner.Start();
             services.AddMongoDbContext<MongoDbContext>(config);
 
             // Remove the existing IEventBus registration
