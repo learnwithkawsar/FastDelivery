@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace OrderService.Api.Controllers;
-[AllowAnonymous]
+//[AllowAnonymous]
 public class OrdersController : VersionedApiController
 {
 

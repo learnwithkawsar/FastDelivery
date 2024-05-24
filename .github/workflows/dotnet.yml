@@ -25,4 +25,4 @@ jobs:
     - name: Build
       run: dotnet build --no-restore FastDelivery.sln
     - name: Test
-      run: dotnet test FastDelivery.sln 
+      run: dotnet test --no-restore FastDelivery.sln 
