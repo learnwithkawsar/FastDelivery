@@ -1,5 +1,6 @@
 ﻿# Fast Delivery Management
 
+
 [![fastdelivery-build-action](https://github.com/learnwithkawsar/FastDelivery/actions/workflows/dotnet.yml/badge.svg)](https://github.com/learnwithkawsar/FastDelivery/actions/workflows/dotnet.yml)
 Fast Delivery Management is a microservice-based delivery application designed to streamline the management of orders, identity, and tracking. Leveraging the power of Dapr, it ensures efficient and scalable service-to-service communication, with robust integrations for databases, message queues, logging, and more.
 
@@ -7,8 +8,9 @@ Fast Delivery Management is a microservice-based delivery application designed t
 
 - [.NET Microservices](#net-microservices)
 - [Table of Contents](#table-of-contents)
+  - [Architecture](#architecture)
   - [Goals](#goals)
-  - [Fast Delivery](#Fast-Delivery)
+  - [Fast Delivery](#fastDelivery)
   - [How to Run ?](#how-to-run-)    
     - [Docker \& Docker-Compose](#docker--docker-compose)
   - [Technologies \& Libraries](#technologies--libraries)
@@ -19,7 +21,10 @@ Fast Delivery Management is a microservice-based delivery application designed t
   - [Support ⭐](#support-)
   - [Code Contributors](#code-contributors)
 
+## Architecture
 
+The application is structured following the principles of Clean Architecture, ensuring separation of concerns and maintainability. The use of CQRS and the Mediator pattern further enhance the scalability and responsiveness of the system.
+![Fast Delivery Management](images/microservice.png)
 
 ## Goals
 
