@@ -5,9 +5,11 @@ using FastDelivery.Service.Order.Application.IntegrationEvents.Events;
 using FastDelivery.Service.Order.Application.Parcels.Dtos;
 using FastDelivery.Service.Order.Application.Parcels.Features;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace OrderService.Api.Controllers;
+[AllowAnonymous]
 public class OrdersController : VersionedApiController
 {
 
