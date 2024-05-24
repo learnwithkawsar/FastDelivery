@@ -1,0 +1,23 @@
+﻿{
+  Data: [
+    {
+      Id: Guid_1,
+      MerchantId: 1,
+      ParcelId: 88142548,
+      InvoiceId: 55154463,
+      FullName: Test Name,
+      MobileNo: 01475201214,
+      Address: address,
+      COD_Amount: 50.0,
+      Note: note,
+      CurrentStatus: placed,
+      NextStatus: processing
+    }
+  ],
+  PageNumber: 1,
+  PageSize: 10,
+  TotalPages: 1,
+  TotalItems: 1,
+  IsFirstPage: true,
+  IsLastPage: true
+}
