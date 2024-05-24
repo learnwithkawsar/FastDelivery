@@ -25,7 +25,7 @@ public class WebAppFactory<TProgram> : WebApplicationFactory<TProgram> where TPr
             var sp = services.BuildServiceProvider();
             var config = sp.GetRequiredService<IConfiguration>();
 
-            _mongoDbRunner = MongoDbRunner.Start();
+            // _mongoDbRunner = MongoDbRunner.Start();
             services.AddMongoDbContext<MongoDbContext>(config);
 
             // Remove the existing IEventBus registration
@@ -45,7 +45,7 @@ public class WebAppFactory<TProgram> : WebApplicationFactory<TProgram> where TPr
     {
         if (disposing)
         {
-            _mongoDbRunner.Dispose();
+            //  _mongoDbRunner.Dispose();
         }
         base.Dispose(disposing);
     }
