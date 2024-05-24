@@ -1,90 +1,115 @@
-# Fast Delivery Management
+﻿# Fast Delivery Management
 
-## Introduction
-
+[![fastdelivery-build-action](https://github.com/learnwithkawsar/FastDelivery/actions/workflows/dotnet.yml/badge.svg)](https://github.com/learnwithkawsar/FastDelivery/actions/workflows/dotnet.yml)
 Fast Delivery Management is a microservice-based delivery application designed to streamline the management of orders, identity, and tracking. Leveraging the power of Dapr, it ensures efficient and scalable service-to-service communication, with robust integrations for databases, message queues, logging, and more.
 
-## Table of Contents
+# Table of Contents
 
-- [Introduction](#introduction)
-- [Features](#features)
-- [Architecture](#architecture)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Configuration](#configuration)
-- [Dependencies](#dependencies)
-- [Documentation](#documentation)
-- [Examples](#examples)
-- [Troubleshooting](#troubleshooting)
-- [Contributors](#contributors)
-- [License](#license)
+- [.NET Microservices](#net-microservices)
+- [Table of Contents](#table-of-contents)
+  - [Goals](#goals)
+  - [Fast Delivery](#Fast-Delivery)
+  - [How to Run ?](#how-to-run-)    
+    - [Docker \& Docker-Compose](#docker--docker-compose)
+  - [Technologies \& Libraries](#technologies--libraries)
+  - [Documentation](#documentation)
+  - [Changelogs](#changelogs)
+  - [Community](#community)
+  - [License](#license)
+  - [Support ⭐](#support-)
+  - [Code Contributors](#code-contributors)
 
-## Features
 
-- **Microservice architecture using Dapr**: Facilitates efficient communication between microservices and ensures scalability and fault tolerance.
-  - **Dapr**: A portable, event-driven runtime that makes it easy to build resilient, stateless, and stateful microservices. It provides a set of building blocks for common microservice patterns, such as service invocation, state management, and publish/subscribe messaging.
-- **Services**:
-  - **Order Service**: Manages the creation, updating, and retrieval of orders.
-  - **Identity Service**: Handles user authentication and authorization.
-  - **Tracking Service**: Provides real-time tracking information for orders.
-- **Databases**:
-  - **PostgreSQL**: A powerful, open-source relational database system for storing order and user data.
-  - **Redis**: An in-memory data structure store, used for caching and real-time analytics.
-  - **MongoDB**: A NoSQL database for storing unstructured tracking data.
-- **Messaging**:
-  - **RabbitMQ**: A robust message broker that facilitates communication between services using an event-driven architecture.
-- **Logging**:
-  - **ELK Stack**: Elasticsearch, Logstash, and Kibana are used together to collect, process, and visualize logs and metrics.
-- **API Gateway**:
-  - **YARP (Yet Another Reverse Proxy)**: Manages API traffic and provides a single entry point for all services. YARP handles routing, load balancing, and security, ensuring that API requests are efficiently directed to the appropriate microservices.
-- **Event Bus Integration**: Ensures reliable event-driven communication between microservices.
-- **Health Check endpoints**: Provides endpoints to monitor the health and status of each service.
-- **Integration Testing**:
-  - **xUnit**: A testing framework for .NET, used to write integration tests ensuring system reliability.
-- **Architecture**:
-  - **Clean Architecture**: Ensures a modular, maintainable, and testable codebase by separating concerns.
-  - **Clean Code principles**: Adheres to best practices in coding to ensure readability and maintainability.
-  - **Mediator pattern**: Facilitates communication between objects without direct dependencies.
-  - **CQRS (Command Query Responsibility Segregation)**: Separates read and write operations to optimize performance and scalability.
-- **Containerization**:
-  - **Docker Compose**: Simplifies the setup and management of the development environment by orchestrating multiple Docker containers.
 
-## Architecture
+## Goals
 
-The application is structured following the principles of Clean Architecture, ensuring separation of concerns and maintainability. The use of CQRS and the Mediator pattern further enhance the scalability and responsiveness of the system.
+- :sparkle: Using `Vertical Slice Architecture` for architecture level.
+- :sparkle: Using `Domain Driven Design (DDD)` to implement all business processes in microservices.
+- :sparkle: Using `Rabbitmq` on top of `MassTranit` for `Event Driven Architecture` between our microservices.
+- :sparkle: Using `CQRS` implementation with `MediatR` library.
+- :sparkle: Using `Entity Framework Core` for some microservices.
+- :sparkle: Using `MongoDB` for some microservices.
+- :sparkle: Using `Fluent Validation` and a `Validation Pipeline Behaviour` on top of `MediatR`.
+- :sparkle: Using `Health Check` for reporting the health of app infrastructure components.
+- :sparkle: Using `Built-In Containerization` for `Docker` images.
+- :sparkle: Using `Zipkin` for distributed tracing.
+- :sparkle: Using `OpenIddict` for authentication and authorization base on `OpenID-Connect` and `OAuth2`.
+- :sparkle: Using `Yarp` as a microservices gateway.
 
-## Installation
+## Fast Delivery
 
-To set up and run Fast Delivery Management locally, follow these steps:
+Fast Delivery is a sample project that consumes the microservice framework. You will learn a lot by exploring this project, which is located under the `./Fast Delivery` folder.
 
-1. **Clone the repository**:
-    ```sh
-    git clone https://github.com/yourusername/fast-delivery-management.git
-    cd fast-delivery-management
+
+| Services          | Status         |
+| ----------------- | -------------- |
+| Gateway           | WIP       🚧   |
+| Identity          | WIP       🚧   |
+| Orders            | WIP       🚧   |
+| Tracking          | WIP       🚧   |
+| Rider             | WIP       🚧   |
+| Payment           | WIP       🚧   |
+
+## How to Run ?
+
+### Docker & Docker-Compose
+The `Fast Delivery` project comes included with the required docker-compose.yaml.
+
+There are some prerequisites for using these included docker-compose.yml files:
+
+1) Make sure you have docker installed (on windows install docker desktop)
+
+2) go to root folder and open terminal and run:
+
+    ```
+    docker-compose up 
     ```
 
-2. **Install dependencies**:
-    Ensure you have Docker and Docker Compose installed.
+  
+## Technologies & Libraries
 
-3. **Run the application**:
-    ```sh
-    docker-compose up
-    ```
+- **[`.NET 8`](https://dotnet.microsoft.com/download)** - .NET Framework and .NET Core, including ASP.NET and ASP.NET Core
+- **[`Dapr`](https://dapr.io/)** - Dapr provides integrated APIs for communication, state, and workflow. Dapr leverages industry best practices for security, resiliency, and observability.
+- **[`MVC Versioning API`](https://github.com/microsoft/aspnet-api-versioning)** - Set of libraries which add service API versioning to ASP.NET Web API, OData with ASP.NET Web API, and ASP.NET Core
+- **[`EF Core`](https://github.com/dotnet/efcore)** - Modern object-database mapper for .NET. It supports LINQ queries, change tracking, updates, and schema migrations
+- **[`MediatR`](https://github.com/jbogard/MediatR)** - Simple, unambitious mediator implementation in .NET.
+- **[`FluentValidation`](https://github.com/FluentValidation/FluentValidation)** - Popular .NET validation library for building strongly-typed validation rules
+- **[`Swagger & Swagger UI`]()** - Swagger tools for documenting API's built on ASP.NET Core
+- **[`Serilog`](https://github.com/serilog/serilog)** - Simple .NET logging with fully-structured events
+- **[`ELK`](https://github.com/elastic)** - Visualize logs with kibana
+- **[`OpenIddict`](https://github.com/openiddict/openiddict-core)** - OpenIddict aims at providing a versatile solution to implement OpenID Connect client, server and token validation support.
+- **[`Mapster`](https://github.com/MapsterMapper/Mapster)** - Convention-based object-object mapper in .NET.
+- **[`Yarp`](https://github.com/microsoft/reverse-proxy)** - Reverse proxy toolkit for building fast proxy servers in .NET
+- **[`MongoDB.Driver`](https://github.com/mongodb/mongo-csharp-driver)** - .NET Driver for MongoDB.
 
-4. **Access the services**:
-    - Order Service: `http://localhost:5001`
-    - Identity Service: `http://localhost:5002`
-    - Tracking Service: `http://localhost:5003`
-    - API Gateway: `http://localhost:8000`
+## Documentation
 
-## Usage
+Read Documentation related to this Boilerplate here -
+> Docs are not yet updated.
 
-### Placing an Order
+## Changelogs
 
-To place an order, send a POST request to the Order Service:
+[View Complete Changelogs.]()
 
-```sh
-curl -X POST "http://localhost:8000/api/order" -H "Content-Type: application/json" -d '{
-  "customerId": "123",
-  "items": [{"productId": "456", "quantity": 2}]
-}'
+## Community
+
+
+## License
+
+This project is licensed with the [MIT license](LICENSE).
+
+
+## Support ⭐
+
+Has this Project helped you learn something New? or Helped you at work?
+Here are a few ways by which you can support.
+
+-   Leave a star! ⭐
+-   Recommend this awesome project to your colleagues. 🥇
+
+
+## Code Contributors
+
+This project exists thanks to all the people who contribute. [Submit your PR and join the elite list!](CONTRIBUTING.md)
+
+
