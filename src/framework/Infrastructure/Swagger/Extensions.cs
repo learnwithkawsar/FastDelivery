@@ -32,10 +32,12 @@ public static class Extensions
     }
     public static void AddSwaggerExtension(this IServiceCollection services, IConfiguration configuration)
     {
+        var excludedPathsService = services.BuildServiceProvider().GetRequiredService<ExcludedPathsService>();
         var swaggerOptions = services.BindValidateReturn<SwaggerOptions>(configuration);
         _ = services.AddSwaggerGen(config =>
         {
             config.CustomSchemaIds(type => type.ToString());
+            config.DocumentFilter<CustomDocumentFilter>(excludedPathsService);
             config.MapType<DateOnly>(() => new OpenApiSchema
             {
                 Type = "string",

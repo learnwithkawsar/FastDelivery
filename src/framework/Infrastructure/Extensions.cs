@@ -7,6 +7,7 @@ using FastDelivery.Framework.Infrastructure.Options;
 using FastDelivery.Framework.Infrastructure.Services;
 using FastDelivery.Framework.Infrastructure.Swagger;
 using FluentValidation;
+using Google.Api;
 using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -30,6 +31,7 @@ public static class Extensions
             options.AddPolicy(name: AllowAllOrigins,
                               builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
         });
+        builder.Services.AddMemoryCache();
         builder.Services.AddCustomeApiVersioning();
         builder.Services.AddExceptionMiddleware();
         builder.Services.AddControllers().AddDapr();
@@ -45,7 +47,11 @@ public static class Extensions
             builder.Services.AddMediatR(o => o.RegisterServicesFromAssembly(applicationAssembly));
         }
 
-        if (enableSwagger) builder.Services.AddSwaggerExtension(config);
+        if (enableSwagger)
+        {
+            builder.Services.AddSingleton<ExcludedPathsService>();
+            builder.Services.AddSwaggerExtension(config);
+        }
         //  builder.Services.AddCachingService(config);
         builder.Services.AddInternalServices();
         builder.Services.AddDaprClient();
