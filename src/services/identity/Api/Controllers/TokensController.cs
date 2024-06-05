@@ -1,4 +1,7 @@
-﻿using FastDelivery.Service.Identity.Domain.Users;
+﻿using FastDelivery.Framework.Infrastructure.Multitenancy;
+using FastDelivery.Framework.Infrastructure.Swagger;
+using FastDelivery.Service.Identity.Domain.Users;
+using Finbuckle.MultiTenant;
 using MassTransit.Internals;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Identity;
@@ -26,6 +29,7 @@ namespace Api.Controllers
             _userManager = userManager;
         }
 
+        [TenantIdHeader]
         [HttpPost("~/connect/token"), IgnoreAntiforgeryToken, Produces("application/json")]
         public async Task<IActionResult> Exchange()
         {
@@ -60,6 +64,8 @@ namespace Api.Controllers
             // Validate the username and password
             var username = request.Username;
             var password = request.Password;
+
+            var tt = HttpContext.GetMultiTenantContext<AppTenantInfo>()?.TenantInfo;
 
             // You would typically validate the credentials against your user store/database
             var user = await _userManager.FindByNameAsync(username);

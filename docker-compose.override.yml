@@ -60,6 +60,7 @@ services:
     network_mode: "service:tracking-service"
     volumes:
      - ./components:/components
+    restart: on-failure:5
 
   identity-service:
     build:

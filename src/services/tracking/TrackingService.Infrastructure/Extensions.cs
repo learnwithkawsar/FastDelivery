@@ -16,7 +16,7 @@ public static class Extensions
         var applicationAssembly = typeof(TrackingApplication).Assembly;
         var policyNames = new List<string> { "catalog:read", "catalog:write" };
         builder.Services.AddOpenIdAuth(builder.Configuration, policyNames);
-        builder.AddInfrastructure(applicationAssembly, false);
+        builder.AddInfrastructure(applicationAssembly);
 
         builder.Services
                 .AddHealthChecks()

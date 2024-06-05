@@ -4,6 +4,7 @@ using FastDelivery.Framework.Infrastructure.Controllers;
 using FastDelivery.Service.Order.Application.IntegrationEvents.Events;
 using FastDelivery.Service.Order.Application.Parcels.Dtos;
 using FastDelivery.Service.Order.Application.Parcels.Features;
+using Finbuckle.MultiTenant;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -12,6 +13,7 @@ namespace OrderService.Api.Controllers;
 //[AllowAnonymous]
 public class OrdersController : VersionedApiController
 {
+    public TenantInfo? TenantInfo { get; private set; }
 
     public OrdersController()
     {
@@ -29,6 +31,7 @@ public class OrdersController : VersionedApiController
             var command = new AddParcelCommand(request.MerchantId, request.InvoiceId, request.FullName, request.MobileNo, request.Address, request.COD_Amount, request.Note);
             var commandResponse = await Mediator.Send(command);
             await EventBus.PublishAsync(new OrderAddToTrackingIntegrationEvent(commandResponse));
+            TenantInfo = HttpContext.GetMultiTenantContext<TenantInfo>()?.TenantInfo;
             return commandResponse;
         }
         catch (Exception ex)

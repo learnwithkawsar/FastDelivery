@@ -1,5 +1,7 @@
 ﻿using Dapr.Client;
+using FastDelivery.Framework.Infrastructure.Multitenancy;
 using FastDelivery.Service.Identity.Domain.Users;
+using Finbuckle.MultiTenant.Abstractions;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,10 +15,12 @@ public class ValuesController : ControllerBase
     private string DAPR_STORE_NAME = "statestore";
     private readonly UserManager<ApplicationUser> _userManager;
     private readonly DaprClient _daprClient;
-    public ValuesController(UserManager<ApplicationUser> userManager, DaprClient daprClient)
+    private readonly IMultiTenantStore<AppTenantInfo> _tenantStore;
+    public ValuesController(UserManager<ApplicationUser> userManager, DaprClient daprClient, IMultiTenantStore<AppTenantInfo> tenantStore)
     {
         _userManager = userManager;
         _daprClient = daprClient;
+        _tenantStore = tenantStore;
     }
     // GET: api/<ValuesController>
     [HttpGet]
@@ -37,25 +41,30 @@ public class ValuesController : ControllerBase
     // GET api/<ValuesController>/5
 
     [HttpGet("{id}")]
-    public async Task<string> GetAsync(int id)
+    public async Task<IEnumerable<AppTenantInfo>> GetAsync(int id)
     {
-        var adminUser = new ApplicationUser
-        {
-
-            Email = "admin@admin.com",
-            UserName = "admin",
-            EmailConfirmed = true,
-            PhoneNumberConfirmed = true,
-            NormalizedEmail = "admin@admin.com".ToUpperInvariant(),
-            NormalizedUserName = "admin".ToUpperInvariant(),
-
-        };
 
 
-        var password = new PasswordHasher<ApplicationUser>();
-        adminUser.PasswordHash = password.HashPassword(adminUser, "123Pa$$word!");
-        await _userManager.CreateAsync(adminUser);
-        return "value";
+
+        var data = await _tenantStore.GetAllAsync();
+        return data;
+        //var adminUser = new ApplicationUser
+        //{
+
+        //    Email = "admin@admin.com",
+        //    UserName = "admin",
+        //    EmailConfirmed = true,
+        //    PhoneNumberConfirmed = true,
+        //    NormalizedEmail = "admin@admin.com".ToUpperInvariant(),
+        //    NormalizedUserName = "admin".ToUpperInvariant(),
+
+        //};
+
+
+        //var password = new PasswordHasher<ApplicationUser>();
+        //adminUser.PasswordHash = password.HashPassword(adminUser, "123Pa$$word!");
+        //await _userManager.CreateAsync(adminUser);
+        //return "value";
     }
 
     //[HttpPost]
